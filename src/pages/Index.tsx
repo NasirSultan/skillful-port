@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Mail, Phone, MapPin, Linkedin, ExternalLink,
   Code2, Server, Brain, Cloud, ChevronDown,
-  Briefcase, Building2
+  Briefcase, Building2, Menu, X, ArrowUp
 } from "lucide-react";
 
 const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Contact"];
@@ -15,7 +15,7 @@ const SKILLS = {
 };
 
 const SKILL_ICONS: Record<string, React.ReactNode> = {
-  "Front-End": <Code2 className="w-6 h-6" />, 
+  "Front-End": <Code2 className="w-6 h-6" />,
   "Back-End & Databases": <Server className="w-6 h-6" />,
   "AI & Automation": <Brain className="w-6 h-6" />,
   "DevOps & Deployment": <Cloud className="w-6 h-6" />,
@@ -95,74 +95,134 @@ const EXPERIENCES = [
   },
 ];
 
-function useReveal() {
+const STATS = [
+  { value: "3+", label: "International Projects" },
+  { value: "92%", label: "AI Accuracy Achieved" },
+  { value: "60%", label: "Manual Effort Reduced" },
+  { value: "1K+", label: "Concurrent Users Handled" },
+];
+
+// ─── Hooks ───
+
+function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
-      { threshold: 0.15 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        }),
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
     const el = ref.current;
     if (el) {
-      el.querySelectorAll(".reveal").forEach((child) => observer.observe(child));
+      el.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((child) =>
+        observer.observe(child)
+      );
     }
     return () => observer.disconnect();
   }, []);
   return ref;
 }
+
+function useActiveSection() {
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { threshold: 0.3, rootMargin: "-80px 0px -40% 0px" }
+    );
+    NAV_LINKS.forEach((l) => {
+      const el = document.getElementById(l.toLowerCase());
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+  return active;
+}
+
+// ─── Components ───
+
 const ExperienceSection = () => {
-  const [activeIndex, setActiveIndex] = useState(1); // default to Eaglines
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [animKey, setAnimKey] = useState(0);
   const active = EXPERIENCES[activeIndex];
+
+  const handleSwitch = useCallback((i: number) => {
+    setActiveIndex(i);
+    setAnimKey((k) => k + 1);
+  }, []);
 
   return (
     <section id="experience" className="py-24 px-6 bg-card/50">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="reveal text-center mb-16">
           <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">My Career <span className="text-gradient">Journey</span></h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">Driven by a pursuit of innovation, growth, and a culture that inspires excellence.</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
+            My Career <span className="text-gradient">Journey</span>
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Driven by a pursuit of innovation, growth, and a culture that inspires excellence.
+          </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6">
-          {/* Left: Company list */}
-          <div className="md:w-56 shrink-0 flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+        <div className="reveal flex flex-col md:flex-row gap-6" style={{ transitionDelay: "0.2s" }}>
+          {/* Left: Company tabs */}
+          <div className="md:w-60 shrink-0 flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-hide">
             {EXPERIENCES.map((exp, i) => (
               <button
                 key={i}
-                onClick={() => setActiveIndex(i)}
-                className={`text-left px-4 py-3 rounded-lg border transition-all duration-300 whitespace-nowrap md:whitespace-normal shrink-0 ${
+                onClick={() => handleSwitch(i)}
+                className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-nowrap md:whitespace-normal shrink-0 group ${
                   activeIndex === i
-                    ? "bg-primary/10 border-primary text-foreground"
-                    : "bg-card border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                    ? "bg-primary/10 border-primary/40 text-foreground shimmer"
+                    : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
                 }`}
               >
+                {activeIndex === i && (
+                  <span className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-primary hidden md:block" />
+                )}
                 <span className="font-display font-semibold text-sm">{exp.company}</span>
-                <p className={`text-xs mt-0.5 hidden md:block ${activeIndex === i ? "text-primary" : "text-muted-foreground"}`}>{exp.role}</p>
+                <p className={`text-xs mt-1 hidden md:block transition-colors ${activeIndex === i ? "text-primary" : "text-muted-foreground group-hover:text-muted-foreground"}`}>
+                  {exp.role}
+                </p>
+                <p className="text-[10px] mt-0.5 hidden md:block text-muted-foreground/60">{exp.period}</p>
               </button>
             ))}
           </div>
 
-          {/* Right: Details */}
-          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 border border-border min-h-[300px]">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                <Building2 className="w-5 h-5" />
+          {/* Right: Details panel */}
+          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 border border-border min-h-[320px] relative overflow-hidden">
+            <div key={animKey} className="tab-content-enter">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-display text-xl font-bold">{active.company}</h3>
+                  <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                    <Briefcase className="w-3.5 h-3.5" />
+                    {active.role}
+                  </div>
+                </div>
               </div>
-              <h3 className="font-display text-xl font-bold">{active.company}</h3>
+              <p className="text-xs text-muted-foreground mb-6 flex items-center gap-2">
+                <MapPin className="w-3 h-3" />
+                {active.period} · {active.location}
+              </p>
+              <ul className="space-y-4">
+                {active.points.map((p, j) => (
+                  <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-3 items-start">
+                    <span className="text-primary shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-primary block" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="flex items-center gap-2 mb-1 text-primary text-sm font-medium">
-              <Briefcase className="w-3.5 h-3.5" />
-              {active.role}
-            </div>
-            <p className="text-xs text-muted-foreground mb-6">{active.period} &nbsp;·&nbsp; {active.location}</p>
-            <ul className="space-y-3">
-              {active.points.map((p, j) => (
-                <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-3">
-                  <span className="text-primary shrink-0 mt-0.5">▸</span>
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
@@ -170,26 +230,68 @@ const ExperienceSection = () => {
   );
 };
 
+// ─── Main ───
+
 const Index = () => {
-  const containerRef = useReveal();
+  const containerRef = useScrollReveal();
+  const activeSection = useActiveSection();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div ref={containerRef} className="min-h-screen bg-background text-foreground">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="font-display text-xl font-bold text-gradient">SS</span>
+          <a href="#" className="font-display text-xl font-bold text-gradient">SS</a>
           <div className="hidden md:flex gap-8">
             {NAV_LINKS.map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              <a
+                key={l}
+                href={`#${l.toLowerCase()}`}
+                className={`nav-link text-sm transition-colors duration-300 ${
+                  activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
                 {l}
               </a>
             ))}
           </div>
-          <a href="#contact" className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
-            Hire Me
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity hidden sm:block">
+              Hire Me
+            </a>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-foreground">
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
+            <div className="px-6 py-4 flex flex-col gap-3">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l}
+                  href={`#${l.toLowerCase()}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {l}
+                </a>
+              ))}
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground text-center mt-2">
+                Hire Me
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}
@@ -197,15 +299,19 @@ const Index = () => {
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: "radial-gradient(circle at 30% 40%, hsl(36 60% 50% / 0.15) 0%, transparent 60%), radial-gradient(circle at 70% 70%, hsl(20 40% 30% / 0.1) 0%, transparent 50%)"
         }} />
+        {/* Decorative circles */}
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full border border-primary/5 animate-float hidden lg:block" />
+        <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full border border-primary/5 animate-float hidden lg:block" style={{ animationDelay: "2s" }} />
+
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Developer</p>
           <h1 className="animate-fade-up delay-100 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6">
             Sultan <span className="text-gradient">Sir Raina</span>
           </h1>
-          <p className="animate-fade-up delay-200 text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="animate-fade-up delay-200 text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             1.5+ years building AI-driven backend solutions. Deployed 3 international-level projects on AWS & DigitalOcean. Currently leading teams & architecting scalable systems.
           </p>
-          <div className="animate-fade-up delay-300 flex flex-wrap justify-center gap-4 mb-12">
+          <div className="animate-fade-up delay-300 flex flex-wrap justify-center gap-4 mb-14">
             <a href="mailto:rainasirsultan123@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
               <Mail className="w-4 h-4" /> rainasirsultan123@gmail.com
             </a>
@@ -218,18 +324,35 @@ const Index = () => {
               <MapPin className="w-4 h-4" /> Lahore, Pakistan
             </span>
           </div>
-          <a href="#about" className="animate-fade-up delay-400 inline-block">
+
+          {/* Stats row */}
+          <div className="animate-fade-up delay-400 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
+            {STATS.map((s, i) => (
+              <div key={i} className="text-center">
+                <p className="font-display text-2xl font-bold text-gradient">{s.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <a href="#about" className="animate-fade-up delay-500 inline-block">
             <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
           </a>
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* About */}
       <section id="about" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="reveal">
+          <div className="reveal-left">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">About Me</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">Building the Future with <span className="text-gradient">AI & Backend</span></h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
+              Building the Future with <span className="text-gradient">AI & Backend</span>
+            </h2>
+          </div>
+          <div className="reveal-right" style={{ transitionDelay: "0.15s" }}>
             <div className="bg-card rounded-xl p-8 border border-border animate-glow">
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
                 Backend AI Developer at Eaglines with over 1.5 years of experience specializing in backend and AI-driven solutions. Successfully completed and deployed three international-level projects, including two AI-based backend projects handled via prompt engineering and one using RAG architecture, on AWS EC2 and DigitalOcean. Currently serving as team leader, managing technical documentation, collaborating with UI/UX designers, and defining seamless backend logic and system design approaches for scalable, high-performance applications.
@@ -239,28 +362,40 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Experience */}
       <ExperienceSection />
+
+      <div className="section-divider" />
 
       {/* Projects */}
       <section id="projects" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Projects</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Featured <span className="text-gradient">Work</span></h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">
+              Featured <span className="text-gradient">Work</span>
+            </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {PROJECTS.map((project, i) => (
-              <div key={i} className="reveal card-hover bg-card rounded-xl p-6 border border-border flex flex-col" style={{ transitionDelay: `${i * 0.15}s` }}>
+              <div
+                key={i}
+                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} card-hover bg-card rounded-xl p-6 border border-border flex flex-col`}
+                style={{ transitionDelay: `${i * 0.15}s` }}
+              >
                 <div className="flex items-center gap-2 mb-4">
-                  <ExternalLink className="w-5 h-5 text-primary" />
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <ExternalLink className="w-4 h-4" />
+                  </div>
                   <h3 className="font-display text-lg font-semibold">{project.title}</h3>
                 </div>
-                <p className="text-primary/70 text-xs font-mono mb-4">{project.tech}</p>
+                <p className="text-primary/70 text-xs font-mono mb-4 bg-primary/5 inline-block px-2 py-1 rounded">{project.tech}</p>
                 <ul className="space-y-3 flex-1">
                   {project.points.map((p, j) => (
                     <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-2">
-                      <span className="text-primary mt-1">▸</span>
+                      <span className="text-primary shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-primary block" />
                       <span>{p}</span>
                     </li>
                   ))}
@@ -271,23 +406,34 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Skills */}
       <section id="skills" className="py-24 px-6 bg-card/50">
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Skills</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Technical <span className="text-gradient">Arsenal</span></h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">
+              Technical <span className="text-gradient">Arsenal</span>
+            </h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
             {Object.entries(SKILLS).map(([category, skills], i) => (
-              <div key={category} className="reveal bg-card rounded-xl p-6 border border-border card-hover" style={{ transitionDelay: `${i * 0.1}s` }}>
+              <div
+                key={category}
+                className="reveal-scale bg-card rounded-xl p-6 border border-border card-hover"
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">{SKILL_ICONS[category]}</div>
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary">{SKILL_ICONS[category]}</div>
                   <h3 className="font-display text-lg font-semibold">{category}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
-                    <span key={skill} className="text-xs px-3 py-1.5 rounded-full bg-secondary text-muted-foreground border border-border hover:text-primary hover:border-primary/30 transition-colors duration-300">
+                    <span
+                      key={skill}
+                      className="skill-tag text-xs px-3 py-1.5 rounded-full bg-secondary text-muted-foreground border border-border hover:text-primary hover:border-primary/30 cursor-default"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -298,26 +444,39 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Contact */}
       <section id="contact" className="py-24 px-6">
         <div className="max-w-2xl mx-auto text-center">
           <div className="reveal">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Contact</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Let's Work <span className="text-gradient">Together</span></h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+              Let's Work <span className="text-gradient">Together</span>
+            </h2>
             <p className="text-muted-foreground mb-10">I'm always open to discussing new projects and opportunities.</p>
           </div>
-          <div className="reveal delay-200 grid sm:grid-cols-3 gap-4">
-            <a href="mailto:rainasirsultan123@gmail.com" className="card-hover bg-card rounded-xl p-6 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-colors">
-              <Mail className="w-6 h-6 text-primary" />
-              <span className="text-sm text-muted-foreground">Email</span>
+          <div className="reveal-scale grid sm:grid-cols-3 gap-4" style={{ transitionDelay: "0.2s" }}>
+            <a href="mailto:rainasirsultan123@gmail.com" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
+              <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                <Mail className="w-6 h-6" />
+              </div>
+              <span className="text-sm font-medium text-foreground">Email</span>
+              <span className="text-xs text-muted-foreground">Drop me a line</span>
             </a>
-            <a href="tel:+923411731277" className="card-hover bg-card rounded-xl p-6 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-colors">
-              <Phone className="w-6 h-6 text-primary" />
-              <span className="text-sm text-muted-foreground">Phone</span>
+            <a href="tel:+923411731277" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
+              <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                <Phone className="w-6 h-6" />
+              </div>
+              <span className="text-sm font-medium text-foreground">Phone</span>
+              <span className="text-xs text-muted-foreground">Let's talk</span>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="card-hover bg-card rounded-xl p-6 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-colors">
-              <Linkedin className="w-6 h-6 text-primary" />
-              <span className="text-sm text-muted-foreground">LinkedIn</span>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
+              <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                <Linkedin className="w-6 h-6" />
+              </div>
+              <span className="text-sm font-medium text-foreground">LinkedIn</span>
+              <span className="text-xs text-muted-foreground">Connect with me</span>
             </a>
           </div>
         </div>
@@ -325,8 +484,19 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border text-center">
-        <p className="text-muted-foreground text-sm">© 2025 Sultan Sir Raina. All rights reserved. </p>
+        <p className="text-muted-foreground text-sm">© 2025 Sultan Sir Raina. All rights reserved.</p>
       </footer>
+
+      {/* Scroll to top */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:opacity-90 ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-4 h-4" />
+      </button>
     </div>
   );
 };
