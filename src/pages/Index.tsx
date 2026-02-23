@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import {
   Mail, Phone, MapPin, Linkedin, ExternalLink,
-  Code2, Server, Brain, Cloud, ChevronDown
+  Code2, Server, Brain, Cloud, ChevronDown,
+  Briefcase, Building2
 } from "lucide-react";
 
 const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Contact"];
@@ -47,17 +48,51 @@ const PROJECTS = [
   },
 ];
 
-const EXPERIENCE_POINTS = [
-  "Developed and integrated APIs in React.js and Next.js with Redux state management.",
-  "Built agentive AI agents using LangChain, LangGraph & Gemini/GPT, reducing manual effort by 60%.",
-  "Managed file uploads with Multer, AWS S3, Imgbb, and DigitalOcean Spaces.",
-  "Integrated Stripe API for payment transactions and webhook verification.",
-  "Built high-performance APIs with Redis caching and Docker, handling 1,000+ concurrent users.",
-  "Created live streaming platform using Agora with multi-session support and dynamic UI.",
-  "Developed WebSocket server in Nest.js for real-time multi-team chat.",
-  "Optimized API response times from 14s to 3s using Promise.all in Prisma.",
-  "Trained domain-specific models using RAG, improving first-response accuracy from 60% to 92%.",
-  "Built microservices-driven architecture eliminating 100% of manual metadata updates.",
+const EXPERIENCES = [
+  {
+    company: "ShoutlyAI",
+    role: "Backend AI Automation Lead",
+    period: "Oct 2025 – Present",
+    location: "Remote",
+    points: [
+      "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
+      "Developed AI-powered automation tools to streamline workflows and improve efficiency.",
+    ],
+  },
+  {
+    company: "Eaglines",
+    role: "AI Backend Developer",
+    period: "Jul 2025 – Present",
+    location: "Lahore, Pakistan | Onsite",
+    points: [
+      "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
+      "Built RAG systems for advanced information retrieval.",
+      "Designed backend architecture and data relationships for efficient database management.",
+      "Collaborated closely with UI designers and frontend developers for smooth API integration.",
+    ],
+  },
+  {
+    company: "Dev-master",
+    role: "AI Full Stack Engineer",
+    period: "Jan 2025 – Jul 2025",
+    location: "Karnataka, India | Remote",
+    points: [
+      "Integrated AI models into web applications for enhanced functionality.",
+      "Deployed projects on Vercel and other hosting platforms, managing files via Imgbb.",
+      "Optimized backend systems and managed databases using MongoDB and Express.js.",
+    ],
+  },
+  {
+    company: "Rhombix Technologies",
+    role: "Full Stack Engineer",
+    period: "Oct 2024 – Dec 2024",
+    location: "Lahore, Pakistan | Onsite",
+    points: [
+      "Developed backend systems using Node.js and MongoDB for efficient data management.",
+      "Built frontend interfaces with React.js and Tailwind CSS.",
+      "Managed file systems, integrated APIs, and optimized application performance.",
+    ],
+  },
 ];
 
 function useReveal() {
@@ -147,17 +182,53 @@ const Index = () => {
 
       {/* Experience */}
       <section id="experience" className="py-24 px-6 bg-card/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="reveal">
-            <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Experience</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">Software Company</h2>
-            <p className="text-muted-foreground mb-10">March 2025 – Present</p>
+        <div className="max-w-5xl mx-auto">
+          <div className="reveal text-center mb-16">
+            <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">My Career <span className="text-gradient">Journey</span></h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Driven by a pursuit of innovation, growth, and a culture that inspires excellence.</p>
           </div>
-          <div className="space-y-4">
-            {EXPERIENCE_POINTS.map((point, i) => (
-              <div key={i} className="reveal flex gap-4 items-start" style={{ transitionDelay: `${i * 0.05}s` }}>
-                <span className="mt-2 w-2 h-2 rounded-full bg-primary shrink-0" />
-                <p className="text-muted-foreground leading-relaxed">{point}</p>
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-4 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-border" />
+
+            {EXPERIENCES.map((exp, i) => (
+              <div
+                key={i}
+                className={`reveal relative flex flex-col md:flex-row gap-6 md:gap-12 mb-12 last:mb-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                style={{ transitionDelay: `${i * 0.15}s` }}
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background z-10 mt-1" />
+
+                {/* Content card */}
+                <div className={`ml-10 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? "md:text-right md:pr-4" : "md:text-left md:pl-4 md:ml-auto"}`}>
+                  <div className="card-hover bg-card rounded-xl p-6 border border-border">
+                    <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:justify-end" : ""}`}>
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                        <Building2 className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg font-semibold">{exp.company}</h3>
+                      </div>
+                    </div>
+                    <div className={`flex items-center gap-2 mb-1 text-primary text-sm font-medium ${i % 2 === 0 ? "md:justify-end" : ""}`}>
+                      <Briefcase className="w-3.5 h-3.5" />
+                      {exp.role}
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-4">{exp.period} &nbsp;·&nbsp; {exp.location}</p>
+                    <ul className={`space-y-2 ${i % 2 === 0 ? "md:text-right" : ""}`}>
+                      {exp.points.map((p, j) => (
+                        <li key={j} className={`text-muted-foreground text-sm leading-relaxed flex gap-2 ${i % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""}`}>
+                          <span className="text-primary shrink-0 mt-0.5">▸</span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
