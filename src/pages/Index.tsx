@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Mail, Phone, MapPin, Linkedin, ExternalLink,
   Code2, Server, Brain, Cloud, ChevronDown,
@@ -110,6 +110,65 @@ function useReveal() {
   }, []);
   return ref;
 }
+const ExperienceSection = () => {
+  const [activeIndex, setActiveIndex] = useState(1); // default to Eaglines
+  const active = EXPERIENCES[activeIndex];
+
+  return (
+    <section id="experience" className="py-24 px-6 bg-card/50">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">My Career <span className="text-gradient">Journey</span></h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">Driven by a pursuit of innovation, growth, and a culture that inspires excellence.</p>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Left: Company list */}
+          <div className="md:w-56 shrink-0 flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+            {EXPERIENCES.map((exp, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`text-left px-4 py-3 rounded-lg border transition-all duration-300 whitespace-nowrap md:whitespace-normal shrink-0 ${
+                  activeIndex === i
+                    ? "bg-primary/10 border-primary text-foreground"
+                    : "bg-card border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                }`}
+              >
+                <span className="font-display font-semibold text-sm">{exp.company}</span>
+                <p className={`text-xs mt-0.5 hidden md:block ${activeIndex === i ? "text-primary" : "text-muted-foreground"}`}>{exp.role}</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Right: Details */}
+          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 border border-border min-h-[300px]">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <h3 className="font-display text-xl font-bold">{active.company}</h3>
+            </div>
+            <div className="flex items-center gap-2 mb-1 text-primary text-sm font-medium">
+              <Briefcase className="w-3.5 h-3.5" />
+              {active.role}
+            </div>
+            <p className="text-xs text-muted-foreground mb-6">{active.period} &nbsp;·&nbsp; {active.location}</p>
+            <ul className="space-y-3">
+              {active.points.map((p, j) => (
+                <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-3">
+                  <span className="text-primary shrink-0 mt-0.5">▸</span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Index = () => {
   const containerRef = useReveal();
@@ -181,59 +240,7 @@ const Index = () => {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="py-24 px-6 bg-card/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="reveal text-center mb-16">
-            <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">My Career <span className="text-gradient">Journey</span></h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Driven by a pursuit of innovation, growth, and a culture that inspires excellence.</p>
-          </div>
-
-          {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-4 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-border" />
-
-            {EXPERIENCES.map((exp, i) => (
-              <div
-                key={i}
-                className={`reveal relative flex flex-col md:flex-row gap-6 md:gap-12 mb-12 last:mb-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-                style={{ transitionDelay: `${i * 0.15}s` }}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background z-10 mt-1" />
-
-                {/* Content card */}
-                <div className={`ml-10 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? "md:text-right md:pr-4" : "md:text-left md:pl-4 md:ml-auto"}`}>
-                  <div className="card-hover bg-card rounded-xl p-6 border border-border">
-                    <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:justify-end" : ""}`}>
-                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                        <Building2 className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-lg font-semibold">{exp.company}</h3>
-                      </div>
-                    </div>
-                    <div className={`flex items-center gap-2 mb-1 text-primary text-sm font-medium ${i % 2 === 0 ? "md:justify-end" : ""}`}>
-                      <Briefcase className="w-3.5 h-3.5" />
-                      {exp.role}
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-4">{exp.period} &nbsp;·&nbsp; {exp.location}</p>
-                    <ul className={`space-y-2 ${i % 2 === 0 ? "md:text-right" : ""}`}>
-                      {exp.points.map((p, j) => (
-                        <li key={j} className={`text-muted-foreground text-sm leading-relaxed flex gap-2 ${i % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""}`}>
-                          <span className="text-primary shrink-0 mt-0.5">▸</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExperienceSection />
 
       {/* Projects */}
       <section id="projects" className="py-24 px-6">
