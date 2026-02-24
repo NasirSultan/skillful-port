@@ -412,32 +412,52 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Projects</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
               Featured <span className="text-gradient">Work</span>
             </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Real-world systems built for scale, intelligence, and impact.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-8">
             {PROJECTS.map((project, i) => (
               <div
                 key={i}
-                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} card-hover bg-card rounded-xl p-6 border border-border flex flex-col`}
+                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover bg-card rounded-2xl border border-border overflow-hidden`}
                 style={{ transitionDelay: `${i * 0.15}s` }}
               >
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <ExternalLink className="w-4 h-4" />
+                <div className="flex flex-col md:flex-row">
+                  {/* Number badge */}
+                  <div className="md:w-28 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
+                    <span className="font-display text-4xl md:text-5xl font-bold text-primary/30 group-hover:text-primary/60 transition-colors duration-500">
+                      0{i + 1}
+                    </span>
                   </div>
-                  <h3 className="font-display text-lg font-semibold">{project.title}</h3>
+                  {/* Content */}
+                  <div className="flex-1 p-6 md:p-8">
+                    <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                          <ExternalLink className="w-5 h-5" />
+                        </div>
+                        <h3 className="font-display text-xl font-bold text-foreground">{project.title}</h3>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {project.tech.split(" | ").map((t) => (
+                        <span key={t} className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <ul className="space-y-3">
+                      {project.points.map((p, j) => (
+                        <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-3 items-start">
+                          <span className="text-primary shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary block" />
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className="text-primary/70 text-xs font-mono mb-4 bg-primary/5 inline-block px-2 py-1 rounded">{project.tech}</p>
-                <ul className="space-y-3 flex-1">
-                  {project.points.map((p, j) => (
-                    <li key={j} className="text-muted-foreground text-sm leading-relaxed flex gap-2">
-                      <span className="text-primary shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-primary block" />
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
