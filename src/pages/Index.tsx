@@ -345,18 +345,56 @@ const Index = () => {
 
       {/* About */}
       <section id="about" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="reveal-left">
+        <div className="max-w-5xl mx-auto">
+          <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">About Me</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
+            <h2 className="font-display text-3xl md:text-4xl font-bold">
               Building the Future with <span className="text-gradient">AI & Backend</span>
             </h2>
           </div>
-          <div className="reveal-right" style={{ transitionDelay: "0.15s" }}>
-            <div className="bg-card rounded-xl p-8 border border-border animate-glow">
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                Backend AI Developer at Eaglines with over 1.5 years of experience specializing in backend and AI-driven solutions. Successfully completed and deployed three international-level projects, including two AI-based backend projects handled via prompt engineering and one using RAG architecture, on AWS EC2 and DigitalOcean. Currently serving as team leader, managing technical documentation, collaborating with UI/UX designers, and defining seamless backend logic and system design approaches for scalable, high-performance applications.
-              </p>
+
+          <div className="grid md:grid-cols-5 gap-8 items-start">
+            {/* Left – intro text */}
+            <div className="md:col-span-3 reveal-left">
+              <div className="bg-card rounded-xl p-8 border border-border animate-glow">
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
+                  Backend AI Developer at <span className="text-foreground font-medium">Eaglines</span> with over 1.5 years of experience specializing in backend and AI-driven solutions. Successfully completed and deployed three international-level projects on <span className="text-foreground font-medium">AWS EC2</span> and <span className="text-foreground font-medium">DigitalOcean</span>.
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
+                  Currently serving as team leader, managing technical documentation, collaborating with UI/UX designers, and defining seamless backend logic and system design approaches for scalable, high-performance applications.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {["AI & LLMs", "System Design", "Team Leadership", "Cloud Deployment"].map((tag) => (
+                    <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right – highlight cards */}
+            <div className="md:col-span-2 flex flex-col gap-4">
+              {[
+                { icon: <Briefcase className="w-5 h-5" />, title: "1.5+ Years", desc: "Professional Experience" },
+                { icon: <Brain className="w-5 h-5" />, title: "AI-First Approach", desc: "RAG, LangChain, Agentic AI" },
+                { icon: <Cloud className="w-5 h-5" />, title: "Cloud Native", desc: "AWS EC2/S3 & DigitalOcean" },
+                { icon: <Code2 className="w-5 h-5" />, title: "Full Stack", desc: "Backend-heavy, frontend-ready" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="reveal-right card-hover bg-card rounded-xl p-5 border border-border flex items-center gap-4"
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="font-display font-semibold text-sm text-foreground">{item.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
