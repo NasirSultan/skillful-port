@@ -468,7 +468,7 @@ const Index = () => {
 
       {/* Skills */}
       <section id="skills" className="py-24 px-6 bg-card/50">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Skills</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
@@ -476,40 +476,57 @@ const Index = () => {
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">Technologies and tools I use to bring ideas to life.</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {Object.entries(SKILLS).map(([category, skills], i) => (
-              <div
-                key={category}
-                className="reveal-scale group bg-card rounded-2xl p-7 border border-border card-hover relative overflow-hidden"
-                style={{ transitionDelay: `${i * 0.12}s` }}
-              >
-                {/* Background glow */}
-                <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500 blur-2xl" />
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      {SKILL_ICONS[category]}
+          {/* Bento-style layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+            {Object.entries(SKILLS).map(([category, skills], i) => {
+              // Alternating spans: first & last = 7cols, middle two = 5cols
+              const spanClass = i === 0 || i === 3 ? "md:col-span-7" : "md:col-span-5";
+              return (
+                <div
+                  key={category}
+                  className={`${spanClass} ${i % 2 === 0 ? "reveal-left" : "reveal-right"} group relative`}
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  <div className="h-full bg-card rounded-2xl border border-border p-6 md:p-8 card-hover relative overflow-hidden">
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-[3rem] group-hover:from-primary/20 transition-all duration-500" />
+                    {/* Bottom line */}
+                    <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
+
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                            {SKILL_ICONS[category]}
+                          </div>
+                          <div>
+                            <h3 className="font-display text-lg font-bold text-foreground">{category}</h3>
+                            <p className="text-xs text-muted-foreground mt-0.5">{skills.length} technologies</p>
+                          </div>
+                        </div>
+                        <span className="font-display text-3xl font-bold text-primary/10 group-hover:text-primary/25 transition-colors duration-500">
+                          0{i + 1}
+                        </span>
+                      </div>
+
+                      {/* Skills grid */}
+                      <div className="flex flex-wrap gap-2.5">
+                        {skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="skill-tag text-xs font-medium px-4 py-2 rounded-xl bg-secondary/80 text-muted-foreground border border-border hover:text-primary hover:border-primary/30 hover:bg-primary/10 hover:shadow-sm hover:shadow-primary/10 cursor-default transition-all duration-300"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold">{category}</h3>
-                      <p className="text-xs text-muted-foreground">{skills.length} technologies</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.map((skill, j) => (
-                      <span
-                        key={skill}
-                        className="skill-tag text-xs px-3 py-1.5 rounded-full bg-secondary text-muted-foreground border border-border hover:text-primary hover:border-primary/30 hover:bg-primary/5 cursor-default transition-all duration-300"
-                        style={{ transitionDelay: `${j * 0.03}s` }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
