@@ -534,37 +534,65 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Contact */}
-      <section id="contact" className="py-24 px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="reveal">
+      <section id="contact" className="py-28 px-6 relative overflow-hidden">
+        {/* Background accents */}
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: "radial-gradient(circle at 20% 50%, hsl(36 60% 50% / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(20 40% 30% / 0.08) 0%, transparent 50%)"
+        }} />
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="reveal text-center mb-14">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Contact</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
               Let's Work <span className="text-gradient">Together</span>
             </h2>
-            <p className="text-muted-foreground mb-10">I'm always open to discussing new projects and opportunities.</p>
+            <p className="text-muted-foreground max-w-lg mx-auto text-base">
+              Have a project in mind or want to collaborate? I'm just a message away.
+            </p>
           </div>
-          <div className="reveal-scale grid sm:grid-cols-3 gap-4" style={{ transitionDelay: "0.2s" }}>
-            <a href="mailto:rainasirsultan123@gmail.com" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <Mail className="w-6 h-6" />
-              </div>
-              <span className="text-sm font-medium text-foreground">Email</span>
-              <span className="text-xs text-muted-foreground">Drop me a line</span>
+
+          {/* CTA banner */}
+          <div className="reveal-scale mb-10 bg-card rounded-2xl border border-border p-8 md:p-10 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <p className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">Ready to build something amazing?</p>
+            <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
+              Whether it's an AI-powered backend, a scalable API, or a full-stack product — let's make it happen.
+            </p>
+            <a
+              href="mailto:rainasirsultan123@gmail.com"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+            >
+              <Mail className="w-4 h-4" />
+              Get In Touch
             </a>
-            <a href="tel:+923411731277" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <Phone className="w-6 h-6" />
-              </div>
-              <span className="text-sm font-medium text-foreground">Phone</span>
-              <span className="text-xs text-muted-foreground">Let's talk</span>
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-glow card-hover bg-card rounded-xl p-8 border border-border flex flex-col items-center gap-3 hover:border-primary/40 transition-all">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <Linkedin className="w-6 h-6" />
-              </div>
-              <span className="text-sm font-medium text-foreground">LinkedIn</span>
-              <span className="text-xs text-muted-foreground">Connect with me</span>
-            </a>
+          </div>
+
+          {/* Contact cards */}
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              { href: "mailto:rainasirsultan123@gmail.com", icon: <Mail className="w-6 h-6" />, label: "Email", value: "rainasirsultan123@gmail.com", sub: "Typically reply within 24h" },
+              { href: "tel:+923411731277", icon: <Phone className="w-6 h-6" />, label: "Phone", value: "+92 341 1731277", sub: "Available Mon–Sat" },
+              { href: "https://linkedin.com", icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", value: "Sultan Sir Raina", sub: "Let's connect", external: true },
+            ].map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className={`${i === 0 ? "reveal-left" : i === 2 ? "reveal-right" : "reveal"} group contact-glow card-hover bg-card rounded-2xl p-7 border border-border flex flex-col items-center gap-4 hover:border-primary/40 transition-all relative overflow-hidden`}
+                style={{ transitionDelay: `${0.2 + i * 0.1}s` }}
+              >
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
+                <div className="p-4 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  {item.icon}
+                </div>
+                <div className="text-center">
+                  <span className="text-sm font-display font-bold text-foreground block">{item.label}</span>
+                  <span className="text-xs text-primary mt-1 block font-medium">{item.value}</span>
+                  <span className="text-[11px] text-muted-foreground mt-1 block">{item.sub}</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
