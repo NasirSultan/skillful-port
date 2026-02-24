@@ -471,30 +471,42 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Skills</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
               Technical <span className="text-gradient">Arsenal</span>
             </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Technologies and tools I use to bring ideas to life.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
             {Object.entries(SKILLS).map(([category, skills], i) => (
               <div
                 key={category}
-                className="reveal-scale bg-card rounded-xl p-6 border border-border card-hover"
-                style={{ transitionDelay: `${i * 0.1}s` }}
+                className="reveal-scale group bg-card rounded-2xl p-7 border border-border card-hover relative overflow-hidden"
+                style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary">{SKILL_ICONS[category]}</div>
-                  <h3 className="font-display text-lg font-semibold">{category}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="skill-tag text-xs px-3 py-1.5 rounded-full bg-secondary text-muted-foreground border border-border hover:text-primary hover:border-primary/30 cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                {/* Background glow */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500 blur-2xl" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                      {SKILL_ICONS[category]}
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-bold">{category}</h3>
+                      <p className="text-xs text-muted-foreground">{skills.length} technologies</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.map((skill, j) => (
+                      <span
+                        key={skill}
+                        className="skill-tag text-xs px-3 py-1.5 rounded-full bg-secondary text-muted-foreground border border-border hover:text-primary hover:border-primary/30 hover:bg-primary/5 cursor-default transition-all duration-300"
+                        style={{ transitionDelay: `${j * 0.03}s` }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
