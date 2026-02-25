@@ -96,10 +96,10 @@ const EXPERIENCES = [
 ];
 
 const STATS = [
-  { value: "3+", label: "International Projects" },
-  { value: "92%", label: "AI Accuracy Achieved" },
-  { value: "60%", label: "Manual Effort Reduced" },
-  { value: "1K+", label: "Concurrent Users Handled" },
+  { value: "5+", label: "International Projects" },
+  { value: "96%", label: "AI Automation Accuracy" },
+  { value: "90%", label: "Client Satisfaction Rate" },
+  { value: "95%", label: "Future-Ready Solutions" },
 ];
 
 // ─── Hooks ───
@@ -249,7 +249,7 @@ const Index = () => {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="font-display text-xl font-bold text-gradient">SS</a>
+          <a href="#" className="font-display text-xl font-bold text-gradient">NS</a>
           <div className="hidden md:flex gap-8">
             {NAV_LINKS.map((l) => (
               <a
@@ -306,19 +306,19 @@ const Index = () => {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Developer</p>
           <h1 className="animate-fade-up delay-100 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6">
-            Sultan <span className="text-gradient">Sir Raina</span>
+            Nasir <span className="text-gradient">Sultan</span>
           </h1>
           <p className="animate-fade-up delay-200 text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            1.5+ years building AI-driven backend solutions. Deployed 3 international-level projects on AWS & DigitalOcean. Currently leading teams & architecting scalable systems.
+        AI-powered backend and automation | Full Stack (FastAPI & Node.js) | AI with LangChain.js | RAG & Prompt Engineering | Generative and agentic AI applications
           </p>
           <div className="animate-fade-up delay-300 flex flex-wrap justify-center gap-4 mb-14">
-            <a href="mailto:rainasirsultan123@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a href="mailto:rainasirsultan123@gmail.com" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
               <Mail className="w-4 h-4" /> rainasirsultan123@gmail.com
             </a>
             <span className="text-border hidden sm:block">|</span>
-            <a href="tel:+923411731277" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-              <Phone className="w-4 h-4" /> +92 341 1731277
-            </a>
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+  <Linkedin className="w-4 h-4 " /> LinkedIn
+</a>
             <span className="text-border hidden sm:block">|</span>
             <span className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4" /> Lahore, Pakistan
