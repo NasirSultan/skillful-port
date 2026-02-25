@@ -25,6 +25,7 @@ const PROJECTS = [
   {
     title: "AI-Powered Automated SEO Optimization",
     tech: "LangGraph | Django | Flask | Pinecone | LLM",
+    category: "Backend AI",
     points: [
       "Developed a fully autonomous SEO engine using AI agents, trend analysis, and vector storage to analyze content, generate optimized tags, and inject them into GitHub-hosted projects automatically.",
       "Implemented scalable microservices architecture with asynchronous services and API orchestration for weekly trend-based SEO updates with auto-commit and push via GitHub.",
@@ -33,6 +34,7 @@ const PROJECTS = [
   {
     title: "Conference App & Live Streaming",
     tech: "Nest.js | PostgreSQL | RESTful API | AWS | Next.js | GPT-LLM",
+    category: "Full Stack",
     points: [
       "Built a role-based admin panel for organizers to manage sessions, speakers, sponsors, participants, and live streaming with QR check-ins and modular architecture.",
       "Implemented real-time announcements, push notifications, live streaming management, and networking features with connection requests.",
@@ -41,6 +43,7 @@ const PROJECTS = [
   {
     title: "OKR Navigator – AI-Powered Game",
     tech: "Nest.js | PostgreSQL | Prompt Engineering | LangChain.js | WebSocket",
+    category: "Backend AI",
     points: [
       "Developed GPT-4 powered engine to automatically generate Objectives and Key Results, evaluate initiatives, calculate weighted relevance scores, and deliver gamified certification.",
       "Enabled real-time scoring, feedback, tracking, and team chat to boost strategy and collaboration.",
@@ -425,10 +428,10 @@ const Index = () => {
                 style={{ transitionDelay: `${i * 0.15}s` }}
               >
                 <div className="flex flex-col md:flex-row">
-                  {/* Number badge */}
-                  <div className="md:w-28 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
-                    <span className="font-display text-4xl md:text-5xl font-bold text-primary/30 group-hover:text-primary/60 transition-colors duration-500">
-                      0{i + 1}
+                  {/* Category badge */}
+                  <div className="md:w-32 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
+                    <span className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight">
+                      {project.category}
                     </span>
                   </div>
                   {/* Content */}
