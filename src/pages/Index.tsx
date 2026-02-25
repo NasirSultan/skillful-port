@@ -430,7 +430,7 @@ const Index = () => {
                 <div className="flex flex-col md:flex-row">
                   {/* Category badge */}
                   <div className="md:w-32 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
-                    <span className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight">
+                    <span className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
                       {project.category}
                     </span>
                   </div>
