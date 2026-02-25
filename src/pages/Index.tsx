@@ -551,28 +551,28 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-0 md:gap-0 rounded-2xl border border-border overflow-hidden">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Project One",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["React", "FastAPI", "AWS"],
-                emoji: "🚀",
+                num: "01",
               },
               {
                 title: "Project Two",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["Next.js", "Node.js", "MongoDB"],
-                emoji: "⚡",
+                num: "02",
               },
               {
                 title: "Project Three",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["LangChain", "Django", "Pinecone"],
-                emoji: "🧠",
+                num: "03",
               },
             ].map((project, i) => (
               <a
@@ -580,27 +580,27 @@ const Index = () => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`reveal-scale group relative flex flex-col bg-card p-8 md:p-9 border-b md:border-b-0 md:border-r border-border last:border-b-0 last:border-r-0 hover:bg-secondary/40 transition-all duration-500`}
-                style={{ transitionDelay: `${i * 0.15}s` }}
+                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
+                style={{ transitionDelay: `${i * 0.13}s` }}
               >
-                {/* Hover glow overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-transparent group-hover:to-primary/5 transition-all duration-700" />
-
-                {/* Animated top bar */}
+                {/* Top accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
 
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Emoji + Status */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{project.emoji}</span>
-                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/70 group-hover:text-primary transition-colors">
+                {/* Corner glow */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
+
+                <div className="relative z-10 p-7 flex flex-col h-full">
+                  {/* Number + status */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                       Live
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
 
@@ -614,31 +614,24 @@ const Index = () => {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[11px] px-3 py-1.5 rounded-full bg-primary/8 text-primary/80 border border-primary/15 font-medium group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
+                        className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  {/* Visit link */}
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto">
+                  {/* Visit CTA */}
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto pt-4 border-t border-border/50">
                     <span>Visit Project</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </div>
                 </div>
+
+                {/* Bottom accent bar */}
+                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
               </a>
             ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="reveal mt-10 text-center">
-            <p className="text-muted-foreground text-sm">
-              More projects on{" "}
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                GitHub →
-              </a>
-            </p>
           </div>
         </div>
       </section>
