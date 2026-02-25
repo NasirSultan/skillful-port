@@ -534,38 +534,45 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Live Projects */}
-      <section id="live" className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section id="live" className="py-28 px-6 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 opacity-40" style={{
+          backgroundImage: "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)"
+        }} />
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="reveal text-center mb-16">
-            <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Portfolio</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
+            <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
               Live <span className="text-gradient">Projects</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Deployed and running — explore them in action.</p>
+            <p className="text-muted-foreground max-w-lg mx-auto text-base">
+              Shipped, deployed, and running in production — click to explore.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-0 md:gap-0 rounded-2xl border border-border overflow-hidden">
             {[
               {
                 title: "Project One",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["React", "FastAPI", "AWS"],
-                status: "Live",
+                emoji: "🚀",
               },
               {
                 title: "Project Two",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["Next.js", "Node.js", "MongoDB"],
-                status: "Live",
+                emoji: "⚡",
               },
               {
                 title: "Project Three",
                 description: "Brief description of what this project does and the problem it solves.",
                 url: "https://example.com",
                 tech: ["LangChain", "Django", "Pinecone"],
-                status: "Live",
+                emoji: "🧠",
               },
             ].map((project, i) => (
               <a
@@ -573,42 +580,65 @@ const Index = () => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover bg-card rounded-2xl border border-border p-6 flex flex-col relative overflow-hidden hover:border-primary/30 transition-all`}
-                style={{ transitionDelay: `${i * 0.12}s` }}
+                className={`reveal-scale group relative flex flex-col bg-card p-8 md:p-9 border-b md:border-b-0 md:border-r border-border last:border-b-0 last:border-r-0 hover:bg-secondary/40 transition-all duration-500`}
+                style={{ transitionDelay: `${i * 0.15}s` }}
               >
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/50 transition-all duration-500" />
+                {/* Hover glow overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-transparent group-hover:to-primary/5 transition-all duration-700" />
 
-                {/* Status badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-primary">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    {project.status}
-                  </span>
-                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                </div>
+                {/* Animated top bar */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
 
-                {/* Title & description */}
-                <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">
-                  {project.description}
-                </p>
-
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[11px] px-2.5 py-1 rounded-lg bg-secondary/80 text-muted-foreground border border-border font-medium"
-                    >
-                      {t}
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Emoji + Status */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{project.emoji}</span>
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/70 group-hover:text-primary transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      Live
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                    {project.description}
+                  </p>
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] px-3 py-1.5 rounded-full bg-primary/8 text-primary/80 border border-primary/15 font-medium group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Visit link */}
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto">
+                    <span>Visit Project</span>
+                    <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </div>
                 </div>
               </a>
             ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="reveal mt-10 text-center">
+            <p className="text-muted-foreground text-sm">
+              More projects on{" "}
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                GitHub →
+              </a>
+            </p>
           </div>
         </div>
       </section>
