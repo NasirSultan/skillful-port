@@ -5,7 +5,7 @@ import {
   Briefcase, Building2, Menu, X, ArrowUp
 } from "lucide-react";
 
-const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Contact"];
+const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Live", "Contact"];
 
 const SKILLS = {
   "Front-End": ["TypeScript", "React.js", "Next.js", "Tailwind CSS", "DSA"],
@@ -25,6 +25,7 @@ const PROJECTS = [
   {
     title: "AI-Powered Automated SEO Optimization",
     tech: "LangGraph | Django | Flask | Pinecone | LLM",
+    category: "Backend AI",
     points: [
       "Developed a fully autonomous SEO engine using AI agents, trend analysis, and vector storage to analyze content, generate optimized tags, and inject them into GitHub-hosted projects automatically.",
       "Implemented scalable microservices architecture with asynchronous services and API orchestration for weekly trend-based SEO updates with auto-commit and push via GitHub.",
@@ -33,6 +34,7 @@ const PROJECTS = [
   {
     title: "Conference App & Live Streaming",
     tech: "Nest.js | PostgreSQL | RESTful API | AWS | Next.js | GPT-LLM",
+    category: "Full Stack",
     points: [
       "Built a role-based admin panel for organizers to manage sessions, speakers, sponsors, participants, and live streaming with QR check-ins and modular architecture.",
       "Implemented real-time announcements, push notifications, live streaming management, and networking features with connection requests.",
@@ -41,6 +43,7 @@ const PROJECTS = [
   {
     title: "OKR Navigator – AI-Powered Game",
     tech: "Nest.js | PostgreSQL | Prompt Engineering | LangChain.js | WebSocket",
+    category: "Backend AI",
     points: [
       "Developed GPT-4 powered engine to automatically generate Objectives and Key Results, evaluate initiatives, calculate weighted relevance scores, and deliver gamified certification.",
       "Enabled real-time scoring, feedback, tracking, and team chat to boost strategy and collaboration.",
@@ -480,10 +483,10 @@ useEffect(() => {
                 style={{ transitionDelay: `${i * 0.15}s` }}
               >
                 <div className="flex flex-col md:flex-row">
-                  {/* Number badge */}
-                  <div className="md:w-28 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
-                    <span className="font-display text-4xl md:text-5xl font-bold text-primary/30 group-hover:text-primary/60 transition-colors duration-500">
-                      0{i + 1}
+                  {/* Category badge */}
+                  <div className="md:w-32 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
+                    <span className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
+                      {project.category}
                     </span>
                   </div>
                   {/* Content */}
@@ -582,6 +585,111 @@ useEffect(() => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Live Projects */}
+      <section id="live" className="py-28 px-6 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 opacity-40" style={{
+          backgroundImage: "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)"
+        }} />
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="reveal text-center mb-16">
+            <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+              Live <span className="text-gradient">Projects</span>
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto text-base">
+              Shipped, deployed, and running in production — click to explore.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Project One",
+                description: "Brief description of what this project does and the problem it solves.",
+                url: "https://example.com",
+                tech: ["React", "FastAPI", "AWS"],
+                num: "01",
+              },
+              {
+                title: "Project Two",
+                description: "Brief description of what this project does and the problem it solves.",
+                url: "https://example.com",
+                tech: ["Next.js", "Node.js", "MongoDB"],
+                num: "02",
+              },
+              {
+                title: "Project Three",
+                description: "Brief description of what this project does and the problem it solves.",
+                url: "https://example.com",
+                tech: ["LangChain", "Django", "Pinecone"],
+                num: "03",
+              },
+            ].map((project, i) => (
+              <a
+                key={i}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
+                style={{ transitionDelay: `${i * 0.13}s` }}
+              >
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
+
+                {/* Corner glow */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
+
+                <div className="relative z-10 p-7 flex flex-col h-full">
+                  {/* Number + status */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      Live
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                    {project.description}
+                  </p>
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Visit CTA */}
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto pt-4 border-t border-border/50">
+                    <span>Visit Project</span>
+                    <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </div>
+                </div>
+
+                {/* Bottom accent bar */}
+                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
+              </a>
+            ))}
           </div>
         </div>
       </section>
