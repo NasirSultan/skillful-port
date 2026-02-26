@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
-  Mail, Phone, MapPin, Linkedin, ExternalLink,
+  Mail, Phone, MapPin, Linkedin, ExternalLink,Github,
   Code2, Server, Brain, Cloud, ChevronDown,
   Briefcase, Building2, Menu, X, ArrowUp
 } from "lucide-react";
@@ -52,60 +52,60 @@ const PROJECTS = [
 ];
 
 const EXPERIENCES = [
-{
-  "company": "ShoutlyAI",
-  "role": "Backend AI Automation Lead",
-  "period": "Oct 2025 – Present",
-  "location": "Remote",
-  "points": [
-    "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
+  {
+    "company": "ShoutlyAI",
+    "role": "Backend AI Automation Lead",
+    "period": "Oct 2025 – Present",
+    "location": "Remote",
+    "points": [
+      "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
       "Developed backend AI-powered automation tools to streamline workflows and improve efficiency.",
-    "Collaborated with UI/UX designers to ensure prototypes and user flows match documentation.",
-    "Worked closely with the frontend team to cross-check reports and ensure alignment with Figma designs and backend requirements.",
-    "Verified layout, responsiveness, and performance of features to meet quality standards."
-  ]
-},
-{
-  "company": "Eaglines",
-  "role": "AI Backend Developer",
-  "period": "Jul 2025 – Present",
-  "location": "Lahore, Pakistan | Onsite",
-  "points": [
-    "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
-    "Built RAG systems for advanced information retrieval.",
-    "Designed backend architecture and data relationships for efficient database management.",
-    "Collaborated closely with UI designers and frontend developers for smooth API integration.",
-    "Analyzed client requirements to develop backend solutions and generate comprehensive reports.",
+      "Collaborated with UI/UX designers to ensure prototypes and user flows match documentation.",
+      "Worked closely with the frontend team to cross-check reports and ensure alignment with Figma designs and backend requirements.",
+      "Verified layout, responsiveness, and performance of features to meet quality standards."
+    ]
+  },
+  {
+    "company": "Eaglines",
+    "role": "AI Backend Developer",
+    "period": "Jul 2025 – Present",
+    "location": "Lahore, Pakistan | Onsite",
+    "points": [
+      "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
+      "Built RAG systems for advanced information retrieval.",
+      "Designed backend architecture and data relationships for efficient database management.",
+      "Collaborated closely with UI designers and frontend developers for smooth API integration.",
+      "Analyzed client requirements to develop backend solutions and generate comprehensive reports.",
       "Deployed backend systems and configured minor/redundant servers for stability and scalability."
-  ]
-},
-{
-  "company": "Dev-master",
-  "role": "AI Full Stack Engineer",
-  "period": "Jan 2025 – Jul 2025",
-  "location": "Karnataka, India | Remote",
-  "points": [
-    "Built full-stack web applications integrating both frontend and backend components.",
-    "Integrated AI models and developed a generative AI chatbot for interactive user experiences.",
-    "Deployed projects on Vercel and other hosting platforms, managing assets via Imgbb.",
-    "Optimized backend systems and managed databases using MongoDB and Express.js.",
-    "Assisted in writing API endpoints, testing functionality, and fixing bugs across the full stack."
-  ]
-},
-{
-  "company": "Rhombix Technologies",
-  "role": "Full Stack Engineer",
-  "period": "Oct 2024 – Dec 2024",
-  "location": "Lahore, Pakistan | Onsite internship",
-  "points": [
-    "Developed backend systems using Node.js and MongoDB for efficient data management.",
-    "Built frontend interfaces with React.js and Tailwind CSS.",
-    "Managed file systems, integrated APIs, and optimized application performance.",
-    "Assisted in writing basic frontend components and linking them with backend endpoints.",
-    "Helped debug and test code to ensure proper functionality.",
-    "Learned and applied version control using Git for collaborative development."
-  ]
-},
+    ]
+  },
+  {
+    "company": "Dev-master",
+    "role": "AI Full Stack Engineer",
+    "period": "Jan 2025 – Jul 2025",
+    "location": "Karnataka, India | Remote",
+    "points": [
+      "Built full-stack web applications integrating both frontend and backend components.",
+      "Integrated AI models and developed a generative AI chatbot for interactive user experiences.",
+      "Deployed projects on Vercel and other hosting platforms, managing assets via Imgbb.",
+      "Optimized backend systems and managed databases using MongoDB and Express.js.",
+      "Assisted in writing API endpoints, testing functionality, and fixing bugs across the full stack."
+    ]
+  },
+  {
+    "company": "Rhombix Technologies",
+    "role": "Full Stack Engineer",
+    "period": "Oct 2024 – Dec 2024",
+    "location": "Lahore, Pakistan | Onsite internship",
+    "points": [
+      "Developed backend systems using Node.js and MongoDB for efficient data management.",
+      "Built frontend interfaces with React.js and Tailwind CSS.",
+      "Managed file systems, integrated APIs, and optimized application performance.",
+      "Assisted in writing basic frontend components and linking them with backend endpoints.",
+      "Helped debug and test code to ensure proper functionality.",
+      "Learned and applied version control using Git for collaborative development."
+    ]
+  },
 ];
 
 const STATS = [
@@ -185,36 +185,34 @@ const ExperienceSection = () => {
 
         <div className="reveal flex flex-col md:flex-row gap-6" style={{ transitionDelay: "0.2s" }}>
           {/* Left: Company tabs */}
-         <div className="w-full md:w-60 flex flex-col gap-2 overflow-visible pb-2">
-  {EXPERIENCES.map((exp, i) => (
-    <button
-      key={i}
-      onClick={() => handleSwitch(i)}
-      className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-normal shrink-0 group ${
-        activeIndex === i
-          ? "bg-primary/10 border-primary/40 text-foreground shimmer"
-          : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
-      }`}
-    >
-      {activeIndex === i && (
-        <span className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-primary hidden md:block" />
-      )}
-      <span className="font-display font-semibold text-sm">{exp.company}</span>
-      <p
-        className={`text-xs mt-1 hidden md:block transition-colors ${
-          activeIndex === i
-            ? "text-primary"
-            : "text-muted-foreground group-hover:text-muted-foreground"
-        }`}
-      >
-        {exp.role}
-      </p>
-      <p className="text-[10px] mt-0.5 hidden md:block text-muted-foreground/60">
-        {exp.period}
-      </p>
-    </button>
-  ))}
-</div>
+          <div className="w-full md:w-60 flex flex-col gap-2 overflow-visible pb-2">
+            {EXPERIENCES.map((exp, i) => (
+              <button
+                key={i}
+                onClick={() => handleSwitch(i)}
+                className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-normal shrink-0 group ${activeIndex === i
+                    ? "bg-primary/10 border-primary/40 text-foreground shimmer"
+                    : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
+                  }`}
+              >
+                {activeIndex === i && (
+                  <span className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-primary hidden md:block" />
+                )}
+                <span className="font-display font-semibold text-sm">{exp.company}</span>
+                <p
+                  className={`text-xs mt-1 hidden md:block transition-colors ${activeIndex === i
+                      ? "text-primary"
+                      : "text-muted-foreground group-hover:text-muted-foreground"
+                    }`}
+                >
+                  {exp.role}
+                </p>
+                <p className="text-[10px] mt-0.5 hidden md:block text-muted-foreground/60">
+                  {exp.period}
+                </p>
+              </button>
+            ))}
+          </div>
 
           {/* Right: Details panel */}
           <div className="flex-1 bg-card rounded-xl p-6 md:p-8 border border-border min-h-[320px] relative overflow-hidden">
@@ -258,78 +256,103 @@ const Index = () => {
   const activeSection = useActiveSection();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+const [isScrolled, setIsScrolled] = useState(false)
 
+useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50)
+  }
+  window.addEventListener("scroll", handleScroll)
+  return () => window.removeEventListener("scroll", handleScroll)
+}, [])
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 600);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-useEffect(() => {
-  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  useEffect(() => {
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 
-  const handleScroll = () => {
-    reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      if (top < windowHeight - 50) {
-        el.classList.add('revealed');
-      }
-    });
-  };
+    const handleScroll = () => {
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 50) {
+          el.classList.add('revealed');
+        }
+      });
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <div ref={containerRef} className="min-h-screen bg-background text-foreground">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="font-display text-xl font-bold text-gradient">NS</a>
-          <div className="hidden md:flex gap-8">
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                className={`nav-link text-sm transition-colors duration-300 ${activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
-              >
-                {l}
-              </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <a href="#contact" className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity hidden sm:block">
-              Hire Me
-            </a>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-foreground">
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
-            <div className="px-6 py-4 flex flex-col gap-3">
-              {NAV_LINKS.map((l) => (
-                <a
-                  key={l}
-                  href={`#${l.toLowerCase()}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {l}
-                </a>
-              ))}
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground text-center mt-2">
-                Hire Me
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+     <nav
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-auto ${
+    isScrolled
+      ? "w-[93%] bg-background/70 backdrop-blur-md rounded-[2.5rem] mt-1 shadow-md mx-auto"
+      : "w-full bg-transparent"
+  }`}
+>
+  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" className="font-display text-xl font-bold text-gradient">InnovateHub</a>
+    <div className="hidden md:flex gap-8">
+      {NAV_LINKS.map((l) => (
+        <a
+          key={l}
+          href={`#${l.toLowerCase()}`}
+          className={`nav-link text-sm transition-colors duration-300 ${
+            activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {l}
+        </a>
+      ))}
+    </div>
+    <div className="flex items-center gap-3">
+      <a
+        href="#contact"
+        className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity hidden sm:block"
+      >
+        Hire Me
+      </a>
+      <button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="md:hidden p-2 text-foreground"
+      >
+        {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+    </div>
+  </div>
+
+  {mobileMenuOpen && (
+    <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
+      <div className="px-6 py-4 flex flex-col gap-3">
+        {NAV_LINKS.map((l) => (
+          <a
+            key={l}
+            href={`#${l.toLowerCase()}`}
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
+          >
+            {l}
+          </a>
+        ))}
+        <a
+          href="#contact"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground text-center mt-2"
+        >
+          Hire Me
+        </a>
+      </div>
+    </div>
+  )}
+</nav>
 
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
@@ -353,7 +376,7 @@ useEffect(() => {
               <Mail className="w-4 h-4" /> rainasirsultan123@gmail.com
             </a>
             <span className="text-border hidden sm:block">|</span>
-            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://www.linkedin.com/in/nasir-sultan-848762282" target="_blank" rel="noopener noreferrer" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
               <Linkedin className="w-4 h-4 " /> LinkedIn
             </a>
             <span className="text-border hidden sm:block">|</span>
@@ -363,35 +386,38 @@ useEffect(() => {
           </div>
 
           {/* Stats row */}
-          <div className="animate-fade-up delay-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
-            {STATS.map((s, i) => {
-              const [count, setCount] = useState(0);
+         <div className="animate-fade-up delay-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
+  {STATS.map((s, i) => {
+    const [count, setCount] = useState(0);
 
-              useEffect(() => {
-                let start = 0;
-                const end = parseInt(s.value.replace("+", "").replace("%", ""));
-                const duration = 3000;
-                const stepTime = Math.abs(Math.floor(duration / end));
+    useEffect(() => {
+      let start = 0;
+      const number = parseInt(s.value.replace("+", "").replace("%", ""));
+      const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
+      const duration = 3000;
+      const stepTime = Math.abs(Math.floor(duration / number));
 
-                const timer = setInterval(() => {
-                  start += 1;
-                  setCount(start);
-                  if (start >= end) clearInterval(timer);
-                }, stepTime);
+      const timer = setInterval(() => {
+        start += 1;
+        setCount(start);
+        if (start >= number) clearInterval(timer);
+      }, stepTime);
 
-                return () => clearInterval(timer);
-              }, [s.value]);
+      return () => clearInterval(timer);
+    }, [s.value]);
 
-              return (
-                <div key={i} className="text-center mt-2">
-                  <p className="font-display text-2xl font-bold text-gradient">
-                    {count}%
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
-                </div>
-              );
-            })}
-          </div>
+    const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
+
+    return (
+      <div key={i} className="text-center mt-2">
+        <p className="font-display text-2xl font-bold text-gradient">
+          {count}{symbol}
+        </p>
+        <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+      </div>
+    );
+  })}
+</div>
 
           <a href="#about" className="animate-fade-up delay-500 inline-block">
             <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
@@ -474,6 +500,7 @@ useEffect(() => {
               Featured <span className="text-gradient">Work</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">Real-world systems built for scale, intelligence, and impact.</p>
+       
           </div>
           <div className="flex flex-col gap-8">
             {PROJECTS.map((project, i) => (
@@ -485,7 +512,13 @@ useEffect(() => {
                 <div className="flex flex-col md:flex-row">
                   {/* Category badge */}
                   <div className="md:w-32 shrink-0 flex items-center justify-center bg-primary/5 border-b md:border-b-0 md:border-r border-border p-6">
-                    <span className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
+                    <span
+                      className="font-display text-sm md:text-base font-bold text-primary/50 group-hover:text-primary transition-colors duration-500 uppercase tracking-wider text-center leading-tight"
+                      style={{
+                        writingMode: window.innerWidth >= 768 ? "vertical-rl" : "horizontal-tb",
+                        textOrientation: window.innerWidth >= 768 ? "mixed" : "unset"
+                      }}
+                    >
                       {project.category}
                     </span>
                   </div>
@@ -592,107 +625,101 @@ useEffect(() => {
       <div className="section-divider" />
 
       {/* Live Projects */}
-      <section id="live" className="py-28 px-6 relative overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)"
-        }} />
+     <section id="live" className="py-28 px-6 relative overflow-hidden">
+  <div
+    className="absolute inset-0 opacity-40"
+    style={{
+      backgroundImage:
+        "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)",
+    }}
+  />
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="reveal text-center mb-16">
-            <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Live <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto text-base">
-              Shipped, deployed, and running in production — click to explore.
+  <div className="max-w-6xl mx-auto relative z-10">
+    <div className="reveal text-center mb-16">
+      <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
+      <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+        Live <span className="text-gradient">Projects</span>
+      </h2>
+      <p className="text-muted-foreground max-w-lg mx-auto text-base">
+        Shipped, deployed, and running in production — click to explore.
+      </p>
+    </div>
+
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        {
+          title: "OKR Admin Panel",
+          description: "Full-stack admin panel deployed with frontend on Vercel and backend on AWS EC2.",
+          url: "https://okr-admin-panel.vercel.app/",
+          tech: ["React", "PostgreSQL", "AWS EC2", "FastAPI"],
+          num: "01",
+        },
+     {
+  title: "Starsynx",
+  description: "Frontend-only project where I handled deployment on DigitalOcean and domain setup on GoDaddy.",
+  url: "https://www.starsynx.com/",
+  tech: [ "DigitalOcean", "GoDaddy"],
+  num: "02",
+},
+        {
+          title: "AI Shoutly Backend",
+          description: "Backend-only project on Render with Nest.js and PostgreSQL, exposing API endpoints.",
+          url: "https://ai-shoutly-backend.onrender.com",
+          tech: ["Nest.js", "PostgreSQL", "Render"],
+          num: "03",
+        },
+      ].map((project, i) => (
+        <a
+          key={i}
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
+          style={{ transitionDelay: `${i * 0.13}s` }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
+
+          <div className="relative z-10 p-7 flex flex-col h-full">
+            <div className="flex items-center justify-between mb-5">
+              <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Live
+              </span>
+            </div>
+
+            <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+              {project.title}
+            </h3>
+
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+              {project.description}
             </p>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto pt-4 border-t border-border/50">
+              <span>Visit Project</span>
+              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Project One",
-                description: "Brief description of what this project does and the problem it solves.",
-                url: "https://example.com",
-                tech: ["React", "FastAPI", "AWS"],
-                num: "01",
-              },
-              {
-                title: "Project Two",
-                description: "Brief description of what this project does and the problem it solves.",
-                url: "https://example.com",
-                tech: ["Next.js", "Node.js", "MongoDB"],
-                num: "02",
-              },
-              {
-                title: "Project Three",
-                description: "Brief description of what this project does and the problem it solves.",
-                url: "https://example.com",
-                tech: ["LangChain", "Django", "Pinecone"],
-                num: "03",
-              },
-            ].map((project, i) => (
-              <a
-                key={i}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
-                style={{ transitionDelay: `${i * 0.13}s` }}
-              >
-                {/* Top accent bar */}
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
-
-                {/* Corner glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
-
-                <div className="relative z-10 p-7 flex flex-col h-full">
-                  {/* Number + status */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
-                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                      Live
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
-                    {project.description}
-                  </p>
-
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Visit CTA */}
-                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto pt-4 border-t border-border/50">
-                    <span>Visit Project</span>
-                    <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                  </div>
-                </div>
-
-                {/* Bottom accent bar */}
-                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
       <div className="section-divider" />
 
@@ -734,8 +761,8 @@ useEffect(() => {
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { href: "mailto:rainasirsultan123@gmail.com", icon: <Mail className="w-6 h-6" />, label: "Email", value: "rainasirsultan123@gmail.com", sub: "Typically reply within 24h" },
-              { href: "tel:+923411731277", icon: <Phone className="w-6 h-6" />, label: "Phone", value: "+92 341 1731277", sub: "Available Mon–Sat" },
-              { href: "https://linkedin.com", icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", value: "Sultan Sir Raina", sub: "Let's connect", external: true },
+               { href: "https://github.com/NasirSultan", icon: <Github className="w-6 h-6" />, label: "GitHub", value: "github.com/yourusername", sub: "Check my projects", external: true },
+              { href: "www.linkedin.com/in/nasir-sultan-848762282", icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", value: "Sultan Sir Raina", sub: "Let's connect", external: true },
             ].map((item, i) => (
               <a
                 key={i}
@@ -762,7 +789,7 @@ useEffect(() => {
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border text-center">
-        <p className="text-muted-foreground text-sm">© 2025 Sultan Sir Raina. All rights reserved.</p>
+        <p className="text-muted-foreground text-sm">© 2026 Sultan Sir Raina. All rights reserved.</p>
       </footer>
 
       {/* Scroll to top */}
