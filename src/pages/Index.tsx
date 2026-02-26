@@ -49,57 +49,67 @@ const PROJECTS = [
 ];
 
 const EXPERIENCES = [
-  {
-    company: "ShoutlyAI",
-    role: "Backend AI Automation Lead",
-    period: "Oct 2025 – Present",
-    location: "Remote",
-    points: [
-      "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
-      "Developed AI-powered automation tools to streamline workflows and improve efficiency.",
-    ],
-  },
-  {
-    company: "Eaglines",
-    role: "AI Backend Developer",
-    period: "Jul 2025 – Present",
-    location: "Lahore, Pakistan | Onsite",
-    points: [
-      "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
-      "Built RAG systems for advanced information retrieval.",
-      "Designed backend architecture and data relationships for efficient database management.",
-      "Collaborated closely with UI designers and frontend developers for smooth API integration.",
-    ],
-  },
-  {
-    company: "Dev-master",
-    role: "AI Full Stack Engineer",
-    period: "Jan 2025 – Jul 2025",
-    location: "Karnataka, India | Remote",
-    points: [
-      "Integrated AI models into web applications for enhanced functionality.",
-      "Deployed projects on Vercel and other hosting platforms, managing files via Imgbb.",
-      "Optimized backend systems and managed databases using MongoDB and Express.js.",
-    ],
-  },
-  {
-    company: "Rhombix Technologies",
-    role: "Full Stack Engineer",
-    period: "Oct 2024 – Dec 2024",
-    location: "Lahore, Pakistan | Onsite",
-    points: [
-      "Developed backend systems using Node.js and MongoDB for efficient data management.",
-      "Built frontend interfaces with React.js and Tailwind CSS.",
-      "Managed file systems, integrated APIs, and optimized application performance.",
-    ],
-  },
+{
+  "company": "ShoutlyAI",
+  "role": "Backend AI Automation Lead",
+  "period": "Oct 2025 – Present",
+  "location": "Remote",
+  "points": [
+    "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
+      "Developed backend AI-powered automation tools to streamline workflows and improve efficiency.",
+    "Collaborated with UI/UX designers to ensure prototypes and user flows match documentation.",
+    "Worked closely with the frontend team to cross-check reports and ensure alignment with Figma designs and backend requirements.",
+    "Verified layout, responsiveness, and performance of features to meet quality standards."
+  ]
+},
+{
+  "company": "Eaglines",
+  "role": "AI Backend Developer",
+  "period": "Jul 2025 – Present",
+  "location": "Lahore, Pakistan | Onsite",
+  "points": [
+    "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
+    "Built RAG systems for advanced information retrieval.",
+    "Designed backend architecture and data relationships for efficient database management.",
+    "Collaborated closely with UI designers and frontend developers for smooth API integration.",
+    "Analyzed client requirements to develop backend solutions and generate comprehensive reports.",
+      "Deployed backend systems and configured minor/redundant servers for stability and scalability."
+  ]
+},
+{
+  "company": "Dev-master",
+  "role": "AI Full Stack Engineer",
+  "period": "Jan 2025 – Jul 2025",
+  "location": "Karnataka, India | Remote",
+  "points": [
+    "Built full-stack web applications integrating both frontend and backend components.",
+    "Integrated AI models and developed a generative AI chatbot for interactive user experiences.",
+    "Deployed projects on Vercel and other hosting platforms, managing assets via Imgbb.",
+    "Optimized backend systems and managed databases using MongoDB and Express.js.",
+    "Assisted in writing API endpoints, testing functionality, and fixing bugs across the full stack."
+  ]
+},
+{
+  "company": "Rhombix Technologies",
+  "role": "Full Stack Engineer",
+  "period": "Oct 2024 – Dec 2024",
+  "location": "Lahore, Pakistan | Onsite internship",
+  "points": [
+    "Developed backend systems using Node.js and MongoDB for efficient data management.",
+    "Built frontend interfaces with React.js and Tailwind CSS.",
+    "Managed file systems, integrated APIs, and optimized application performance.",
+    "Assisted in writing basic frontend components and linking them with backend endpoints.",
+    "Helped debug and test code to ensure proper functionality.",
+    "Learned and applied version control using Git for collaborative development."
+  ]
+},
 ];
 
 const STATS = [
   { value: "5+", label: "International Projects" },
   { value: "96%", label: "AI Automation Accuracy" },
   { value: "90%", label: "Client Satisfaction Rate" },
-  { value: "95%", label: "Future-Ready Solutions" },
+  { value: "100%", label: "Future-Ready Solutions" },
 ];
 
 // ─── Hooks ───
@@ -172,28 +182,36 @@ const ExperienceSection = () => {
 
         <div className="reveal flex flex-col md:flex-row gap-6" style={{ transitionDelay: "0.2s" }}>
           {/* Left: Company tabs */}
-          <div className="md:w-60 shrink-0 flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-hide">
-            {EXPERIENCES.map((exp, i) => (
-              <button
-                key={i}
-                onClick={() => handleSwitch(i)}
-                className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-nowrap md:whitespace-normal shrink-0 group ${
-                  activeIndex === i
-                    ? "bg-primary/10 border-primary/40 text-foreground shimmer"
-                    : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
-                }`}
-              >
-                {activeIndex === i && (
-                  <span className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-primary hidden md:block" />
-                )}
-                <span className="font-display font-semibold text-sm">{exp.company}</span>
-                <p className={`text-xs mt-1 hidden md:block transition-colors ${activeIndex === i ? "text-primary" : "text-muted-foreground group-hover:text-muted-foreground"}`}>
-                  {exp.role}
-                </p>
-                <p className="text-[10px] mt-0.5 hidden md:block text-muted-foreground/60">{exp.period}</p>
-              </button>
-            ))}
-          </div>
+         <div className="w-full md:w-60 flex flex-col gap-2 overflow-visible pb-2">
+  {EXPERIENCES.map((exp, i) => (
+    <button
+      key={i}
+      onClick={() => handleSwitch(i)}
+      className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-normal shrink-0 group ${
+        activeIndex === i
+          ? "bg-primary/10 border-primary/40 text-foreground shimmer"
+          : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
+      }`}
+    >
+      {activeIndex === i && (
+        <span className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-primary hidden md:block" />
+      )}
+      <span className="font-display font-semibold text-sm">{exp.company}</span>
+      <p
+        className={`text-xs mt-1 hidden md:block transition-colors ${
+          activeIndex === i
+            ? "text-primary"
+            : "text-muted-foreground group-hover:text-muted-foreground"
+        }`}
+      >
+        {exp.role}
+      </p>
+      <p className="text-[10px] mt-0.5 hidden md:block text-muted-foreground/60">
+        {exp.period}
+      </p>
+    </button>
+  ))}
+</div>
 
           {/* Right: Details panel */}
           <div className="flex-1 bg-card rounded-xl p-6 md:p-8 border border-border min-h-[320px] relative overflow-hidden">
@@ -243,7 +261,24 @@ const Index = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+useEffect(() => {
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 
+  const handleScroll = () => {
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      if (top < windowHeight - 50) {
+        el.classList.add('revealed');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
   return (
     <div ref={containerRef} className="min-h-screen bg-background text-foreground">
       {/* Nav */}
@@ -255,9 +290,8 @@ const Index = () => {
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}
-                className={`nav-link text-sm transition-colors duration-300 ${
-                  activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`nav-link text-sm transition-colors duration-300 ${activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 {l}
               </a>
@@ -309,16 +343,16 @@ const Index = () => {
             Nasir <span className="text-gradient">Sultan</span>
           </h1>
           <p className="animate-fade-up delay-200 text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-        AI-powered backend and automation | Full Stack (FastAPI & Node.js) | AI with LangChain.js | RAG & Prompt Engineering | Generative and agentic AI applications
+            AI-powered backend and automation | Full Stack (FastAPI & Node.js) | AI with LangChain.js | RAG & Prompt Engineering | Generative and agentic AI applications
           </p>
           <div className="animate-fade-up delay-300 flex flex-wrap justify-center gap-4 mb-14">
             <a href="mailto:rainasirsultan123@gmail.com" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
               <Mail className="w-4 h-4" /> rainasirsultan123@gmail.com
             </a>
             <span className="text-border hidden sm:block">|</span>
-          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-  <Linkedin className="w-4 h-4 " /> LinkedIn
-</a>
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Linkedin className="w-4 h-4 " /> LinkedIn
+            </a>
             <span className="text-border hidden sm:block">|</span>
             <span className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4" /> Lahore, Pakistan
@@ -326,13 +360,34 @@ const Index = () => {
           </div>
 
           {/* Stats row */}
-          <div className="animate-fade-up delay-400 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
-            {STATS.map((s, i) => (
-              <div key={i} className="text-center">
-                <p className="font-display text-2xl font-bold text-gradient">{s.value}</p>
-                <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
-              </div>
-            ))}
+          <div className="animate-fade-up delay-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
+            {STATS.map((s, i) => {
+              const [count, setCount] = useState(0);
+
+              useEffect(() => {
+                let start = 0;
+                const end = parseInt(s.value.replace("+", "").replace("%", ""));
+                const duration = 3000;
+                const stepTime = Math.abs(Math.floor(duration / end));
+
+                const timer = setInterval(() => {
+                  start += 1;
+                  setCount(start);
+                  if (start >= end) clearInterval(timer);
+                }, stepTime);
+
+                return () => clearInterval(timer);
+              }, [s.value]);
+
+              return (
+                <div key={i} className="text-center mt-2">
+                  <p className="font-display text-2xl font-bold text-gradient">
+                    {count}%
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+                </div>
+              );
+            })}
           </div>
 
           <a href="#about" className="animate-fade-up delay-500 inline-block">
@@ -605,9 +660,8 @@ const Index = () => {
       {/* Scroll to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:opacity-90 ${
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
+        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:opacity-90 ${showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          }`}
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-4 h-4" />
