@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
-  Mail, Phone, MapPin, Linkedin, ExternalLink,Github,
+  Mail, Phone, Figma, MapPin, Linkedin, ExternalLink, Github,
   Code2, Server, Brain, Cloud, ChevronDown,
-  Briefcase, Building2, Menu, X, ArrowUp
+  Briefcase, Building2, Menu, X, ArrowUp, GraduationCap
 } from "lucide-react";
 
-const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Live", "Contact"];
+const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Live"];
 
 const SKILLS = {
-  "Front-End": ["TypeScript", "React.js", "Next.js", "Tailwind CSS", "DSA"],
+  "Front-End & tool": ["TypeScript", "React.js", "Next.js", "Tailwind CSS", "DSA", "Postman", "Bravo", "SMTP", "Mapbox", "QR-code", "Agora live streaming"],
   "Back-End & Databases": ["Node.js", "Express.js", "Nest.js", "REST API", "JWT", "OAuth2", "MySQL", "PostgreSQL", "MongoDB", "FastAPI"],
-  "AI & Automation": ["LangChain", "LangGraph", "RAG", "Pinecone", "Prompt Engineering", "Generative AI", "Agentic AI"],
-  "DevOps & Deployment": ["AWS EC2/S3", "DigitalOcean", "Render", "GitHub Actions", "CI/CD", "Docker"],
+  "AI & Automation": ["LangChain", "LangGraph","Deepagent", "CrewAi", "RAG", "ChromaDB", "Prompt Engineering", "Generative AI", "Agentic AI", "Vercel AI SDK"],
+  "DevOps & Deployment": ["AWS EC2/S3", "DigitalOcean", "Vercel", "Hostinger", "Render", "Cpanel", "GitHub Actions", "CI/CD", "Docker", "Space"],
+
 };
 
 const SKILL_ICONS: Record<string, React.ReactNode> = {
-  "Front-End": <Code2 className="w-6 h-6" />,
+  "Front-End & tool": <Code2 className="w-6 h-6" />,
   "Back-End & Databases": <Server className="w-6 h-6" />,
   "AI & Automation": <Brain className="w-6 h-6" />,
   "DevOps & Deployment": <Cloud className="w-6 h-6" />,
@@ -23,30 +24,33 @@ const SKILL_ICONS: Record<string, React.ReactNode> = {
 
 const PROJECTS = [
   {
-    title: "AI-Powered Automated SEO Optimization",
-    tech: "LangGraph | Django | Flask | Pinecone | LLM",
+    title: "AI-Powered Multi-Agent Automation System",
+    tech: "FastApi | PostgreSQL | ChromaDB | DeepAgent | LangChain | RAG | API Orchestration | ChatGPT-4",
     category: "Backend AI",
     points: [
-      "Developed a fully autonomous SEO engine using AI agents, trend analysis, and vector storage to analyze content, generate optimized tags, and inject them into GitHub-hosted projects automatically.",
-      "Implemented scalable microservices architecture with asynchronous services and API orchestration for weekly trend-based SEO updates with auto-commit and push via GitHub.",
+      "Designed a multi-agent AI system with a Supervisor Agent managing specialized sub-agents for task delegation and workflow control.",
+      "Built a Company Knowledge Agent using RAG with ChromaDB vector storage to retrieve structured company information and provide context-aware responses.",
+      "Developed an API Handling Agent to automatically check doctor availability, verify appointment slots, book appointments, and cancel bookings through secure API orchestration.",
+      "Enhanced service orchestration using DeepAgent's semantic research and skills functions to achieve 98% accuracy in task flow and autonomous agent execution."
     ],
   },
   {
-    title: "Conference App & Live Streaming",
-    tech: "Nest.js | PostgreSQL | RESTful API | AWS | Next.js | GPT-LLM",
+    title: "AI-Sharq-conference",
+    tech: "Nest.js | PostgreSQL | Firebase | Digital Ocean | Next.js | Brevo | MapBox | WebSocket",
     category: "Full Stack",
     points: [
-      "Built a role-based admin panel for organizers to manage sessions, speakers, sponsors, participants, and live streaming with QR check-ins and modular architecture.",
-      "Implemented real-time announcements, push notifications, live streaming management, and networking features with connection requests.",
+      "Managed multiple roles (organizers, speakers, sponsors, participants) and team roles for sessions, live screening, and modular architecture.",
+      "Implemented QR code scanning for pre-registration and authorization, real-time announcements, push notifications, live screening management, and networking features with connection requests.",
     ],
   },
   {
-    title: "OKR Navigator – AI-Powered Game",
-    tech: "Nest.js | PostgreSQL | Prompt Engineering | LangChain.js | WebSocket",
+    title: "Media-talk",
+    tech: "Express.js | Deepagent.js | Prompt Engineering | LangChain.js | MongoDB | Vectore search-MongoDB | Vercel AI SDK  ",
     category: "Backend AI",
     points: [
-      "Developed GPT-4 powered engine to automatically generate Objectives and Key Results, evaluate initiatives, calculate weighted relevance scores, and deliver gamified certification.",
-      "Enabled real-time scoring, feedback, tracking, and team chat to boost strategy and collaboration.",
+      "Developed a social media platform where users can post, sell, and purchase items in real-time.",
+      "Implemented a multi-agent AI chatbot with RAG functionality, using MongoDB vector search and ChatGPT embeddings to retrieve and answer user queries efficiently.",
+      "Users can interact with the chatbot to get platform details, latest posts, or item prices, providing a fully AI-driven experience.",
     ],
   },
 ];
@@ -55,7 +59,7 @@ const EXPERIENCES = [
   {
     "company": "ShoutlyAI",
     "role": "Backend AI Automation Lead",
-    "period": "Oct 2025 – Present",
+    "period": "Dec 2025 – Present",
     "location": "Remote",
     "points": [
       "Co-founded and led the full technical setup, maintenance, and issue resolution across all system components.",
@@ -68,7 +72,7 @@ const EXPERIENCES = [
   {
     "company": "Eaglines",
     "role": "AI Backend Developer",
-    "period": "Jul 2025 – Present",
+    "period": "Feb 2025 – Present",
     "location": "Lahore, Pakistan | Onsite",
     "points": [
       "Developed backend systems using generative and agentic AI with LangChain.js and LangGraph.js.",
@@ -82,7 +86,7 @@ const EXPERIENCES = [
   {
     "company": "Dev-master",
     "role": "AI Full Stack Engineer",
-    "period": "Jan 2025 – Jul 2025",
+    "period": "Oct 2024 –  Jan 2025",
     "location": "Karnataka, India | Remote",
     "points": [
       "Built full-stack web applications integrating both frontend and backend components.",
@@ -95,7 +99,7 @@ const EXPERIENCES = [
   {
     "company": "Rhombix Technologies",
     "role": "Full Stack Engineer",
-    "period": "Oct 2024 – Dec 2024",
+    "period": "Aug 2024 – Nov 2024",
     "location": "Lahore, Pakistan | Onsite internship",
     "points": [
       "Developed backend systems using Node.js and MongoDB for efficient data management.",
@@ -110,8 +114,8 @@ const EXPERIENCES = [
 
 const STATS = [
   { value: "5+", label: "International Projects" },
-  { value: "96%", label: "AI Automation Accuracy" },
   { value: "90%", label: "Client Satisfaction Rate" },
+  { value: "96%", label: "AI Automation Accuracy" },
   { value: "100%", label: "Future-Ready Solutions" },
 ];
 
@@ -171,7 +175,7 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-24 px-6 bg-card/50">
+    <section id="experience" className="py-24 px-4 bg-card/50">
       <div className="max-w-5xl mx-auto">
         <div className="reveal text-center mb-16">
           <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
@@ -191,8 +195,8 @@ const ExperienceSection = () => {
                 key={i}
                 onClick={() => handleSwitch(i)}
                 className={`relative text-left px-5 py-4 rounded-xl border transition-all duration-300 whitespace-normal shrink-0 group ${activeIndex === i
-                    ? "bg-primary/10 border-primary/40 text-foreground shimmer"
-                    : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
+                  ? "bg-primary/10 border-primary/40 text-foreground shimmer"
+                  : "bg-card border-border text-muted-foreground hover:border-primary/20 hover:text-foreground hover:bg-card/80"
                   }`}
               >
                 {activeIndex === i && (
@@ -201,8 +205,8 @@ const ExperienceSection = () => {
                 <span className="font-display font-semibold text-sm">{exp.company}</span>
                 <p
                   className={`text-xs mt-1 hidden md:block transition-colors ${activeIndex === i
-                      ? "text-primary"
-                      : "text-muted-foreground group-hover:text-muted-foreground"
+                    ? "text-primary"
+                    : "text-muted-foreground group-hover:text-muted-foreground"
                     }`}
                 >
                   {exp.role}
@@ -229,7 +233,7 @@ const ExperienceSection = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mb-6 flex items-center gap-2">
+              <p className="text-xs text-white mb-6 flex items-center gap-2">
                 <MapPin className="w-3 h-3" />
                 {active.period} · {active.location}
               </p>
@@ -256,15 +260,15 @@ const Index = () => {
   const activeSection = useActiveSection();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-useEffect(() => {
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 50)
-  }
-  window.addEventListener("scroll", handleScroll)
-  return () => window.removeEventListener("scroll", handleScroll)
-}, [])
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 600);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -291,71 +295,69 @@ useEffect(() => {
   return (
     <div ref={containerRef} className="min-h-screen bg-background text-foreground">
       {/* Nav */}
-     <nav
-  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-auto ${
-    isScrolled
-      ? "w-[93%] bg-background/70 backdrop-blur-md rounded-[2.5rem] mt-1 shadow-md mx-auto"
-      : "w-full bg-transparent"
-  }`}
->
-  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#" className="font-display text-xl font-bold text-gradient">InnovateHub</a>
-    <div className="hidden md:flex gap-8">
-      {NAV_LINKS.map((l) => (
-        <a
-          key={l}
-          href={`#${l.toLowerCase()}`}
-          className={`nav-link text-sm transition-colors duration-300 ${
-            activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-auto ${isScrolled
+          ? "w-[93%] bg-background/70 backdrop-blur-md rounded-[2.5rem] mt-1 shadow-md mx-auto"
+          : "w-full bg-transparent"
           }`}
-        >
-          {l}
-        </a>
-      ))}
-    </div>
-    <div className="flex items-center gap-3">
-      <a
-        href="#contact"
-        className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity hidden sm:block"
       >
-        Hire Me
-      </a>
-      <button
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden p-2 text-foreground"
-      >
-        {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
-    </div>
-  </div>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <a href="#" className="font-display text-xl font-bold text-gradient">InnovateHub</a>
+          <div className="hidden md:flex gap-8">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l}
+                href={`#${l.toLowerCase()}`}
+                className={`nav-link text-sm transition-colors duration-300 ${activeSection === l.toLowerCase() ? "active text-primary" : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {l}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              className="text-sm px-4 py-1 border border-primary text-white hover:bg-primary hover:text-primary-foreground transition-colors hidden sm:block"
+            >
+              Contact Me
+            </a>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-foreground"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
 
-  {mobileMenuOpen && (
-    <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
-      <div className="px-6 py-4 flex flex-col gap-3">
-        {NAV_LINKS.map((l) => (
-          <a
-            key={l}
-            href={`#${l.toLowerCase()}`}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
-          >
-            {l}
-          </a>
-        ))}
-        <a
-          href="#contact"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground text-center mt-2"
-        >
-          Hire Me
-        </a>
-      </div>
-    </div>
-  )}
-</nav>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border animate-fade-in">
+            <div className="px-6 py-4 flex flex-col gap-3">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l}
+                  href={`#${l.toLowerCase()}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {l}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm px-4 py-2  bg-primary text-primary-foreground text-center mt-2"
+              >
+                Hire Me
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
 
       {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: "radial-gradient(circle at 30% 40%, hsl(36 60% 50% / 0.15) 0%, transparent 60%), radial-gradient(circle at 70% 70%, hsl(20 40% 30% / 0.1) 0%, transparent 50%)"
         }} />
@@ -364,12 +366,12 @@ useEffect(() => {
         <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full border border-primary/5 animate-float hidden lg:block" style={{ animationDelay: "2s" }} />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Developer</p>
+          <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Engineer</p>
           <h1 className="animate-fade-up delay-100 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6">
             Nasir <span className="text-gradient">Sultan</span>
           </h1>
           <p className="animate-fade-up delay-200 text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            AI-powered backend and automation | Full Stack (FastAPI & Node.js) | AI with LangChain.js | RAG & Prompt Engineering | Generative and agentic AI applications
+            AI-powered backend and automation | Full Stack (FastAPI & MERN) | AI with LangChain.js $ CrewAI | RAG & Prompt Engineering | Generative and agentic AI applications
           </p>
           <div className="animate-fade-up delay-300 flex flex-wrap justify-center gap-4 mb-14">
             <a href="mailto:rainasirsultan123@gmail.com" className="flex  items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -386,38 +388,38 @@ useEffect(() => {
           </div>
 
           {/* Stats row */}
-         <div className="animate-fade-up delay-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
-  {STATS.map((s, i) => {
-    const [count, setCount] = useState(0);
+          <div className="animate-fade-up delay-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto mb-12">
+            {STATS.map((s, i) => {
+              const [count, setCount] = useState(0);
 
-    useEffect(() => {
-      let start = 0;
-      const number = parseInt(s.value.replace("+", "").replace("%", ""));
-      const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
-      const duration = 3000;
-      const stepTime = Math.abs(Math.floor(duration / number));
+              useEffect(() => {
+                let start = 0;
+                const number = parseInt(s.value.replace("+", "").replace("%", ""));
+                const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
+                const duration = 3000;
+                const stepTime = Math.abs(Math.floor(duration / number));
 
-      const timer = setInterval(() => {
-        start += 1;
-        setCount(start);
-        if (start >= number) clearInterval(timer);
-      }, stepTime);
+                const timer = setInterval(() => {
+                  start += 1;
+                  setCount(start);
+                  if (start >= number) clearInterval(timer);
+                }, stepTime);
 
-      return () => clearInterval(timer);
-    }, [s.value]);
+                return () => clearInterval(timer);
+              }, [s.value]);
 
-    const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
+              const symbol = s.value.includes("+") ? "+" : s.value.includes("%") ? "%" : "";
 
-    return (
-      <div key={i} className="text-center mt-2">
-        <p className="font-display text-2xl font-bold text-gradient">
-          {count}{symbol}
-        </p>
-        <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
-      </div>
-    );
-  })}
-</div>
+              return (
+                <div key={i} className="text-center mt-2">
+                  <p className="font-display text-2xl font-bold text-gradient">
+                    {count}{symbol}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+                </div>
+              );
+            })}
+          </div>
 
           <a href="#about" className="animate-fade-up delay-500 inline-block">
             <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
@@ -428,7 +430,7 @@ useEffect(() => {
       <div className="section-divider" />
 
       {/* About */}
-      <section id="about" className="py-24 px-6">
+      <section id="about" className="py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">About Me</p>
@@ -442,13 +444,16 @@ useEffect(() => {
             <div className="md:col-span-3 reveal-left">
               <div className="bg-card rounded-xl p-8 border border-border animate-glow">
                 <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
-                  Backend AI Developer at <span className="text-foreground font-medium">Eaglines</span> with over 1.5 years of experience specializing in backend and AI-driven solutions. Successfully completed and deployed three international-level projects on <span className="text-foreground font-medium">AWS EC2</span> and <span className="text-foreground font-medium">DigitalOcean</span>.
+                  Engineer at <span className="text-foreground font-medium">Eaglines</span> with 1.5+ years of experience building full-stack applications and backend AI automation systems. <span className="text-foreground font-medium">Deployed </span>international projects on servers and hosting platforms.
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
-                  Currently serving as team leader, managing technical documentation, collaborating with UI/UX designers, and defining seamless backend logic and system design approaches for scalable, high-performance applications.
+                  Develop detailed<span className="text-foreground font-medium"> documentation</span>  with well-structured module prototypes based on client requirements and<span className="text-foreground font-medium"> design</span>  advanced backend systems using modern, future-ready approaches.
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
+                  Currently working as a AI Backend and<span className="text-foreground font-medium"> Team Leader</span>, collaborating closely with UI/UX designers to deliver the best <span className="text-foreground font-medium">user experience</span> and the frontend team to ensure smoothly API integration.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {["AI & LLMs", "System Design", "Team Leadership", "Cloud Deployment"].map((tag) => (
+                  {["AI & LLMs", "System Design", "Team Leadership", "Cloud Deployment", "Frontend Collaboration", "API Integration", "API Performance", "Security"].map((tag) => (
                     <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
                       {tag}
                     </span>
@@ -458,12 +463,14 @@ useEffect(() => {
             </div>
 
             {/* Right – highlight cards */}
-            <div className="md:col-span-2 flex flex-col gap-4">
+            <div className="md:col-span-2 flex flex-col gap-3">
               {[
+                { icon: <GraduationCap className="w-5 h-5" />, title: "Education", desc: "Bachelor, UMT University" },
                 { icon: <Briefcase className="w-5 h-5" />, title: "1.5+ Years", desc: "Professional Experience" },
                 { icon: <Brain className="w-5 h-5" />, title: "AI-First Approach", desc: "RAG, LangChain, Agentic AI" },
-                { icon: <Cloud className="w-5 h-5" />, title: "Cloud Native", desc: "AWS EC2/S3 & DigitalOcean" },
+                { icon: <Cloud className="w-5 h-5" />, title: "Cloud Native", desc: "AWS EC2/S3, Render & DigitalOcean" },
                 { icon: <Code2 className="w-5 h-5" />, title: "Full Stack", desc: "Backend-heavy, frontend-ready" },
+
               ].map((item, i) => (
                 <div
                   key={i}
@@ -492,7 +499,7 @@ useEffect(() => {
       <div className="section-divider" />
 
       {/* Projects */}
-      <section id="projects" className="py-24 px-6">
+      <section id="projects" className="py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Projects</p>
@@ -500,7 +507,7 @@ useEffect(() => {
               Featured <span className="text-gradient">Work</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">Real-world systems built for scale, intelligence, and impact.</p>
-       
+
           </div>
           <div className="flex flex-col gap-8">
             {PROJECTS.map((project, i) => (
@@ -558,7 +565,7 @@ useEffect(() => {
       <div className="section-divider" />
 
       {/* Skills */}
-      <section id="skills" className="py-24 px-6 bg-card/50">
+      <section id="skills" className="py-24 px-4 bg-card/50">
         <div className="max-w-6xl mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Skills</p>
@@ -625,106 +632,157 @@ useEffect(() => {
       <div className="section-divider" />
 
       {/* Live Projects */}
-     <section id="live" className="py-28 px-6 relative overflow-hidden">
-  <div
-    className="absolute inset-0 opacity-40"
-    style={{
-      backgroundImage:
-        "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)",
-    }}
-  />
+      <section id="live" className="py-28 px-4 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at 30% 20%, hsl(36 60% 50% / 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, hsl(36 60% 50% / 0.06) 0%, transparent 60%)",
+          }}
+        />
 
-  <div className="max-w-6xl mx-auto relative z-10">
-    <div className="reveal text-center mb-16">
-      <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
-      <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-        Live <span className="text-gradient">Projects</span>
-      </h2>
-      <p className="text-muted-foreground max-w-lg mx-auto text-base">
-        Shipped, deployed, and running in production — click to explore.
-      </p>
-    </div>
-
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {[
-        {
-          title: "OKR Admin Panel",
-          description: "Full-stack admin panel deployed with frontend on Vercel and backend on AWS EC2.",
-          url: "https://okr-admin-panel.vercel.app/",
-          tech: ["React", "PostgreSQL", "AWS EC2", "FastAPI"],
-          num: "01",
-        },
-     {
-  title: "Starsynx",
-  description: "Frontend-only project where I handled deployment on DigitalOcean and domain setup on GoDaddy.",
-  url: "https://www.starsynx.com/",
-  tech: [ "DigitalOcean", "GoDaddy"],
-  num: "02",
-},
-        {
-          title: "AI Shoutly Backend",
-          description: "Backend-only project on Render with Nest.js and PostgreSQL, exposing API endpoints.",
-          url: "https://ai-shoutly-backend.onrender.com",
-          tech: ["Nest.js", "PostgreSQL", "Render"],
-          num: "03",
-        },
-      ].map((project, i) => (
-        <a
-          key={i}
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
-          style={{ transitionDelay: `${i * 0.13}s` }}
-        >
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
-
-          <div className="relative z-10 p-7 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-5">
-              <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
-              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                Live
-              </span>
-            </div>
-
-            <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-              {project.title}
-            </h3>
-
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
-              {project.description}
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="reveal text-center mb-16">
+            <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+              Live <span className="text-gradient">Projects</span>
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto text-base">
+              Shipped, deployed, and running in production — click to explore.
             </p>
-
-            <div className="flex flex-wrap gap-2 mb-5">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 mt-auto pt-4 border-t border-border/50">
-              <span>Visit Project</span>
-              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </div>
           </div>
 
-          <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
-        </a>
-      ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "OKR Navigator",
+                description: "Full backend with AI-powered features; frontend admin panel built and deployed by me on Vercel.",
+                tech: ["React", "PostgreSQL", "AWS EC2", "Gen AI"],
+                num: "01",
+                links: [
+                  { label: "Admin frontend", url: "https://okr-admin-panel.vercel.app/", icon: <ExternalLink className="w-4 h-4 mb-1" /> },
+                  { label: "PlayStore", url: "https://play.google.com/store/apps/details?id=com.focush.okrnav", icon: <ExternalLink className="w-4 h-4 mb-1" /> }
+                ]
+              },
+              {
+                title: "Starsynx",
+                description: "Frontend-only project with deployment on DigitalOcean and domain setup on GoDaddy.",
+                tech: ["DigitalOcean", "GoDaddy"],
+                num: "02",
+                links: [
+                  { label: "Live Site", url: "https://www.starsynx.com/", icon: <ExternalLink className="w-4 h-4 mb-1" /> }
+                ]
+              },
+              {
+                title: "AI Shoutly Backend",
+                description: "Backend project on Render with Nest.js and PostgreSQL exposing API endpoints.",
+                tech: ["Nest.js", "PostgreSQL", "Render"],
+                num: "03",
+                links: [
+                  { label: "Live Backend", url: "https://ai-shoutly-backend.onrender.com/api", icon: <ExternalLink className="w-4 h-4 mb-1" /> }
+                ]
+              },
+            ].map((project, i) => (
+              <div
+                key={i}
+                className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} group card-hover relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all`}
+                style={{ transitionDelay: `${i * 0.13}s` }}
+              >
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary transition-all duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/0 to-transparent group-hover:from-primary/10 transition-all duration-700 rounded-bl-[4rem]" />
+
+                <div className="relative z-10 p-7 flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-display text-3xl font-bold text-primary/15 group-hover:text-primary/35 transition-colors duration-500">{project.num}</span>
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary/60 group-hover:text-primary transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      Live
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] px-3 py-1.5 rounded-full bg-secondary/80 text-muted-foreground border border-border font-medium group-hover:border-primary/25 group-hover:text-primary/90 transition-all duration-300"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
+                    {project.links.map((link, idx) => (
+                      <a
+                        key={idx}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300"
+                      >
+                        {link.icon}
+                        <span>{link.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+      <div className="mt-12 text-center relative z-50">
+  <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Upcoming</p>
+  <h3 className="font-display text-2xl md:text-3xl font-bold mb-4">Projects in Progress</h3>
+  <div className="text-muted-foreground text-base flex flex-wrap justify-center gap-6">
+    
+    <div className="flex flex-col items-center gap-2 relative z-50">
+      <button
+        onClick={() => window.open("https://www.figma.com/design/254RJvvXBx7neJVljau79A/Score-Master?t=ewgBhTj1Yhx7iVgQ-0", "_blank")}
+        className="px-3 py-1.5 rounded-full bg-secondary/20 text-muted-foreground font-medium flex items-center gap-2 cursor-pointer hover:text-primary transition-colors duration-200"
+      >
+        <Figma className="w-4 h-4" />
+        Score Master
+      </button>
+      <div className="w-32 h-1.5 bg-secondary/40 rounded-full overflow-hidden">
+        <div className="h-full bg-primary rounded-full" style={{ width: "95%" }} />
+      </div>
+      <span className="text-[11px] text-primary font-medium">95% Complete</span>
     </div>
+
+    <div className="flex flex-col items-center gap-2 relative z-50">
+      <button
+        onClick={() => window.open("https://www.figma.com/design/SbGFYmMtuI64ZvAEJfGzRq/Talk-Nation?t=E9pZ3XgtVMjleNaQ-0", "_blank")}
+        className="px-3 py-1.5 rounded-full bg-secondary/20 text-muted-foreground font-medium flex items-center gap-2 cursor-pointer hover:text-primary transition-colors duration-200"
+      >
+        <Figma className="w-4 h-4" />
+        Talk Nation
+      </button>
+      <div className="w-32 h-1.5 bg-secondary/40 rounded-full overflow-hidden">
+        <div className="h-full bg-primary rounded-full" style={{ width: "70%" }} />
+      </div>
+      <span className="text-[11px] text-primary font-medium">70% Complete</span>
+    </div>
+
   </div>
-</section>
+</div>
+
+      </section>
 
       <div className="section-divider" />
 
       {/* Contact */}
-      <section id="contact" className="py-28 px-6 relative overflow-hidden">
+      <section id="contact" className="py-28 px-4 relative overflow-hidden">
         {/* Background accents */}
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: "radial-gradient(circle at 20% 50%, hsl(36 60% 50% / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(20 40% 30% / 0.08) 0%, transparent 50%)"
@@ -761,8 +819,8 @@ useEffect(() => {
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { href: "mailto:rainasirsultan123@gmail.com", icon: <Mail className="w-6 h-6" />, label: "Email", value: "rainasirsultan123@gmail.com", sub: "Typically reply within 24h" },
-               { href: "https://github.com/NasirSultan", icon: <Github className="w-6 h-6" />, label: "GitHub", value: "github.com/yourusername", sub: "Check my projects", external: true },
-              { href: "www.linkedin.com/in/nasir-sultan-848762282", icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", value: "Sultan Sir Raina", sub: "Let's connect", external: true },
+              { href: "https://github.com/NasirSultan", icon: <Github className="w-6 h-6" />, label: "GitHub", value: "github.com/Nasir Sultan", sub: "Check my projects", external: true },
+              { href: "https://www.linkedin.com/in/nasir-sultan-848762282", icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", value: "Nasir Sultan", sub: "Let's connect", external: true },
             ].map((item, i) => (
               <a
                 key={i}
@@ -789,7 +847,7 @@ useEffect(() => {
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border text-center">
-        <p className="text-muted-foreground text-sm">© 2026 Sultan Sir Raina. All rights reserved.</p>
+        <p className="text-muted-foreground text-sm">© 2026 Rai Nasir. All rights reserved.</p>
       </footer>
 
       {/* Scroll to top */}
