@@ -653,7 +653,7 @@ const Index = () => {
           }}
         />
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="w-[80%] mx-auto relative z-10">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
