@@ -176,7 +176,7 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" className="py-24 px-4 bg-card/50">
-      <div className="max-w-5xl mx-auto">
+      <div className="w-[80%] mx-auto">
         <div className="reveal text-center mb-16">
           <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
