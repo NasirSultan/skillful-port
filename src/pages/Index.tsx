@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Mail, Phone, Figma, MapPin, Linkedin, ExternalLink, Github,
   Code2, Server, Brain, Cloud, ChevronDown,
-  Briefcase, Building2, Menu, X, ArrowUp, GraduationCap
+  Briefcase, Building2, Menu, X, ArrowUp, GraduationCap, Sun, Moon
 } from "lucide-react";
 
 const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Live"];
