@@ -306,7 +306,7 @@ const Index = () => {
           : "w-full bg-transparent"
           }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="w-[80%] mx-auto py-4 flex items-center justify-between">
           <a href="#" className="font-display text-xl font-bold text-gradient">InnovateHub</a>
           <div className="hidden md:flex gap-8">
             {NAV_LINKS.map((l) => (
