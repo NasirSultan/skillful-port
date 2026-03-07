@@ -377,7 +377,7 @@ const Index = () => {
         <div className="absolute top-20 right-10 w-64 h-64 rounded-full border border-primary/5 animate-float hidden lg:block" />
         <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full border border-primary/5 animate-float hidden lg:block" style={{ animationDelay: "2s" }} />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="w-[80%] max-w-4xl mx-auto text-center relative z-10">
           <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Engineer</p>
           <h1 className="animate-fade-up delay-100 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6">
             Nasir <span className="text-gradient">Sultan</span>
