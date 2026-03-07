@@ -176,7 +176,7 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" className="py-24 px-4 bg-card/50">
-      <div className="max-w-5xl mx-auto">
+      <div className="w-[80%] mx-auto">
         <div className="reveal text-center mb-16">
           <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Work Experience</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
@@ -306,7 +306,7 @@ const Index = () => {
           : "w-full bg-transparent"
           }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="w-[80%] mx-auto py-4 flex items-center justify-between">
           <a href="#" className="font-display text-xl font-bold text-gradient">InnovateHub</a>
           <div className="hidden md:flex gap-8">
             {NAV_LINKS.map((l) => (
@@ -377,7 +377,7 @@ const Index = () => {
         <div className="absolute top-20 right-10 w-64 h-64 rounded-full border border-primary/5 animate-float hidden lg:block" />
         <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full border border-primary/5 animate-float hidden lg:block" style={{ animationDelay: "2s" }} />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="w-[80%] max-w-4xl mx-auto text-center relative z-10">
           <p className="animate-fade-up text-primary text-sm font-medium tracking-[0.3em] uppercase mb-4">Backend AI Engineer</p>
           <h1 className="animate-fade-up delay-100 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-6">
             Nasir <span className="text-gradient">Sultan</span>
@@ -443,7 +443,7 @@ const Index = () => {
 
       {/* About */}
       <section id="about" className="py-24 px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="w-[80%] mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">About Me</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold">
@@ -512,7 +512,7 @@ const Index = () => {
 
       {/* Projects */}
       <section id="projects" className="py-24 px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="w-[80%] mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Projects</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
@@ -578,7 +578,7 @@ const Index = () => {
 
       {/* Skills */}
       <section id="skills" className="py-24 px-4 bg-card/50">
-        <div className="max-w-6xl mx-auto">
+        <div className="w-[80%] mx-auto">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Skills</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
@@ -653,7 +653,7 @@ const Index = () => {
           }}
         />
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="w-[80%] mx-auto relative z-10">
           <div className="reveal text-center mb-16">
             <p className="text-primary text-sm font-medium tracking-[0.3em] uppercase mb-3">Portfolio</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
@@ -800,7 +800,7 @@ const Index = () => {
           backgroundImage: "radial-gradient(circle at 20% 50%, hsl(36 60% 50% / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(20 40% 30% / 0.08) 0%, transparent 50%)"
         }} />
 
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="w-[80%] mx-auto relative z-10">
           <div className="reveal text-center mb-14">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Contact</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
