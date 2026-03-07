@@ -321,9 +321,16 @@ const Index = () => {
             ))}
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className="p-2 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             <a
               href="#contact"
-              className="text-sm px-4 py-1 border border-primary text-white hover:bg-primary hover:text-primary-foreground transition-colors hidden sm:block"
+              className="text-sm px-4 py-1 border border-primary text-foreground hover:bg-primary hover:text-primary-foreground transition-colors hidden sm:block"
             >
               Contact Me
             </a>
