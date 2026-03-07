@@ -30,24 +30,24 @@
 
   .light {
     --background: 0 0% 100%;
-    --foreground: 20 20% 8%;
-    --card: 40 20% 97%;
-    --card-foreground: 20 20% 8%;
+    --foreground: 0 0% 3%;
+    --card: 40 10% 96%;
+    --card-foreground: 0 0% 3%;
     --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 8%;
-    --primary: 36 70% 42%;
+    --popover-foreground: 0 0% 3%;
+    --primary: 30 90% 30%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 35 15% 92%;
-    --secondary-foreground: 20 20% 8%;
-    --muted: 35 10% 94%;
-    --muted-foreground: 20 10% 35%;
-    --accent: 36 70% 42%;
+    --secondary: 35 8% 88%;
+    --secondary-foreground: 0 0% 3%;
+    --muted: 35 6% 92%;
+    --muted-foreground: 0 0% 18%;
+    --accent: 30 90% 30%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 35 10% 88%;
-    --input: 35 10% 88%;
-    --ring: 36 70% 42%;
+    --border: 30 8% 78%;
+    --input: 30 8% 78%;
+    --ring: 30 90% 30%;
   }
 }
 
@@ -143,7 +143,13 @@
 
 /* Gradient text */
 .text-gradient {
-  background: linear-gradient(135deg, hsl(36 60% 50%), hsl(36 80% 65%));
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(36 80% 65%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.light .text-gradient {
+  background: linear-gradient(135deg, hsl(30 90% 28%), hsl(30 80% 40%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
