@@ -800,7 +800,7 @@ const Index = () => {
           backgroundImage: "radial-gradient(circle at 20% 50%, hsl(36 60% 50% / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(20 40% 30% / 0.08) 0%, transparent 50%)"
         }} />
 
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="w-[80%] mx-auto relative z-10">
           <div className="reveal text-center mb-14">
             <p className="text-primary text-sm font-medium tracking-[0.2em] uppercase mb-3">Contact</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
