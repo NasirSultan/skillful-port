@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Mail, Phone, Figma, MapPin, Linkedin, ExternalLink, Github,
   Code2, Server, Brain, Cloud, ChevronDown,
-  Briefcase, Building2, Menu, X, ArrowUp, GraduationCap
+  Briefcase, Building2, Menu, X, ArrowUp, GraduationCap, Sun, Moon
 } from "lucide-react";
 
 const NAV_LINKS = ["About", "Experience", "Projects", "Skills", "Live"];
@@ -260,7 +260,12 @@ const Index = () => {
   const activeSection = useActiveSection();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("light", !isDark);
+  }, [isDark]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -316,9 +321,16 @@ const Index = () => {
             ))}
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className="p-2 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             <a
               href="#contact"
-              className="text-sm px-4 py-1 border border-primary text-white hover:bg-primary hover:text-primary-foreground transition-colors hidden sm:block"
+              className="text-sm px-4 py-1 border border-primary text-foreground hover:bg-primary hover:text-primary-foreground transition-colors hidden sm:block"
             >
               Contact Me
             </a>
